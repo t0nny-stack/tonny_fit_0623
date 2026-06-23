@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tonny Fit - OnlineShop</title>
+    <meta name="description" content="ユーズド専門の洋服通販サイト" />
+    <meta name="viewport" content="width=device-width, initial=scale=1" />
+
+    <!--ファビコン-->
+    <link rel="icon" type="image/png" href="images/31833963-60DB-429D-B823-72A00010497C.png" />
+
+    <!--リセットCSS-->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+
+    <!--googleフォント-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Philosopher&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--Javaa -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.3.2/luminous-basic.min.css"
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--オリジナルCSS-->
+    <link rel="stylesheet" href="css/tonnyfit.css" />
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <style>
+      /* MENUボタンの配置とデザイン */
+      .btn-menu {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        color: rgb(255, 233, 220);
+        padding: 0.5rem 1rem;
+        z-index: 1000; /* メニューより手前に表示 */
+        cursor: pointer;
+
+        /* 👈 ボタンのフォントをPhilosopherに指定 */
+        font-family: "Philosopher", sans-serif;
+        font-weight: bold;
+        font-size: 1rem;
+
+        letter-spacing: 0.05em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="sub-cover cover-menu">
+      
+<header>
+      <div class="logo">
+        <!-- 実際のロゴ画像の代わりにテキストを配置 -->
+        <!-- <h1><a href="#">長谷川酒造株式会社</a></h1> -->
+        <img class="logo" src="images/31833963-60DB-429D-B823-72A00010497C.png" alt="TonnyFitホーム" />
+      </div>
+      <nav>
+        <button class="btn-menu">MENU</button>
+        <ul class="nav-links font-english">
+            <li><a href="index.html">TOP</a></li>
+            <li><a href="news.html">NEWS</a></li>
+            <li><a href="menu.html">ONLINE SHOP</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
+            <!-- <li><a href="online.html" class="btn-online">ONLINE SHOP</a></li> -->
+          </ul>
+      </nav>
+    </header>
+
+      <h2 class="page-title font-english">Online Shop</h2>
+    </div>
+
+    <main class="wrapper grid">
+      <div class="item item-big">
+        <!--←item-big　クラス名追加-->
+        <a
+          class="gris-gallery"
+          href="images/jeansicon.png"
+          data-aos="fade-up"
+        >
+        <img src="images/jeansicon.png" alt="" /></a>
+        <p>ボトムス</p>
+      </div>
+      <div class="item">
+        <a class="gris-gallery" href="images/2.png" data-aos="fade-up">
+        <img src="images/2.png" alt="" /></a>
+        <p>トップス</p>
+      </div>
+      <div class="item">
+        <a class="gris-gallery" href="images/5.png" data-aos="fade-up">
+        <img src="images/5.png" alt="" /></a>
+        <p>ワンピース・オールインワン</p>
+      </div>
+      <div class="item">
+        <a class="gris-gallery" href="images/9.png" data-aos="fade-up">
+        <img src="images/9.png" alt="" /></a>
+        <p>シューズ</p>
+      </div>
+      <div class="item">
+        <a class="gris-gallery" href="images/8.png" data-aos="fade-up">
+        <img src="images/8.png" alt="" /></a>
+        <p>帽子</p>
+      </div>
+      <div class="item">
+        <a class="gris-gallery" href="images/4.png" data-aos="fade-up">
+        <img src="images/4.png" alt="" /></a>
+        <p>小物</p>
+      </div>
+      <div class="item">
+        <a class="gris-gallery" href="images/6.png" data-aos="fade-up">
+        <img src="images/6.png" alt="" /></a>
+        <p>アクセサリー</p>
+      </div>
+      <div class="item">
+        <a class="gris-gallery" href="images/3.png" data-aos="fade-up">
+        <img src="images/3.png" alt="" /></a>
+        <p>ジュエリー</p>
+      </div>
+      <div class="item">
+        <a class="gris-gallery" href="images/7.png" data-aos="fade-up">
+        <img src="images/7.png" alt="" /></a>
+        <p>オリジナル洗剤等</p>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <div class="info-container">
+    <h3 class="heading-large font-english">Information</h3>
+    
+    <table class="info">
+      <tr>
+        <th>住所</th>
+        <td>東京都渋谷区表参道0-0 ○○○</td>
+      </tr>
+      <tr>
+        <th>電話</th>
+        <td>03-1111-XXXX</td>
+      </tr>
+      <tr>
+        <th>営業時間</th>
+        <td>24h</td>
+      </tr>
+    </table>
+  </div>
+      <div class="copyright">
+        <small>&copy; 2026 Tonny Fit</small>
+      </div>
+    </footer>
+    <script src="https://unpkg.com/aos@next/dist/aos.js">
+      AOS.init();
+    </script>
+  </body>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.querySelector(".btn-menu");
+      const nav = document.querySelector(".nav-links");
+
+      if (btn && nav) {
+        btn.addEventListener("click", () => {
+          nav.classList.toggle("open-menu");
+          if (btn.innerHTML === "MENU") {
+            btn.innerHTML = "CLOSE";
+          } else {
+            btn.innerHTML = "MENU";
+          }
+        });
+      }
+    });
+  </script>
+
+  <!-- JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/luminous-lightbox/2.3.2/luminous.min.js"></script>
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    new LuminousGallery(document.querySelectorAll(".grid-gallery"));
+    
+      AOS.init();
+    </script>
+  </script>
+</html>

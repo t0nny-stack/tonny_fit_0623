@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tonny Fit</title>
+    <meta name="description" content="ユーズド専門の洋服通販サイト" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--ファビコン-->
+    <link
+      rel="icon"
+      type="image/png"
+      href="images/31833963-60DB-429D-B823-72A00010497C.png"
+    />
+
+    <!--リセットCSS-->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+
+    <!--googleフォント-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Philosopher&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--オリジナルCSS-->
+    <link rel="stylesheet" href="css/tonnyfit.css" />
+
+    <!-- OGP -->
+    <meta
+      property="og:url"
+      content="https://t0nny-stack.github.io/tonny_fit62/index.html"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Tonny Fit" />
+    <meta property="og:description" content="ユーズド専門の洋服通販サイト" />
+    <meta
+      property="og:image"
+      content="https://t0nny-stack.github.io/tonny_fit62/images/kranich17-jeans-5394561_1920.jpg"
+    />
+
+    <style>
+      /* MENUボタンの配置とデザイン */
+      /* MENUボタンの配置とデザイン */
+      .btn-menu {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background-color: transparent; /* 背景を透明に */
+        border: 1px solid rgb(255, 246, 237); /*枠線 */
+        color: rgb(36, 36, 36); /* 👈 文字色も全体のテーマカラーに合わせる */
+        padding: 0.5rem 1rem;
+        z-index: 1000;
+        cursor: pointer;
+        font-family: "Philosopher", sans-serif;
+        font-weight: bold;
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+        border-radius: 10px;
+        transition:
+          background-color 0.3s ease,
+          color 0.3s ease; /* ホバー時にじわっと変える */
+      }
+
+      .btn-menu:hover {
+        background-color: #9b4600 !important;
+        color: rgb(255, 244, 237) !important;
+        border-color: transparent;
+      }
+
+      .btn-menu a {
+        color: rgb(36, 36, 36);
+      }
+      .banner-container {
+        margin: 5rem 3rem; /* セクションとの間にスペースを確保 */
+        width: 1000px; /* スマホで見やすい横幅 */
+        height: 200px;
+        max-width: 1000px; /* PCでの最大幅を制限 */
+        /* overflow: hidden; */
+        border-radius: 10px; /* 角を少し丸くして柔らかく */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      .banner-image {
+        /* display: ; */
+        width: 1500px;
+        height: 200px;
+        size: 1000px;
+
+        /* transition: opacity 0.3s ease; */
+      }
+
+      .banner-image:hover {
+        opacity: 0.6;
+      }
+      /* バナーの初期状態（透明で少し下に配置） */
+      .banner-container {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-out; /* 0.8秒かけて滑らかに動く */
+      }
+
+      /* 表示された時のクラス（JavaScriptで付与） */
+      .banner-container.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* 既存のスタイルを強制的に上書きして中央配置・横並びにする */
+      .grid {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important; /* 3つ並びを強制 */
+        gap: 20px !important;
+        max-width: 1000px !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+      }
+
+      .item {
+        width: 100% !important; /* 親（grid）の分割に従う */
+        text-align: center !important;
+      }
+
+      /* .banner-image {
+                    display: block;
+                    width: 1100px;
+                    height: auto;
+                    transition: opacity 0.3s ease;
+                  } */
+
+      /* PCサイズ (768px以上) での調整 */
+      @media (min-width: 768px) {
+        .banner-container {
+          max-width: 1000px; /* PCでの最大幅をここで指定 */
+        }
+      }
+
+      /* 768px以上の画面で適用 */
+      @media (min-width: 768px) {
+        /* 既存のスタイルより優先度を上げるために親のタグ(body等)を含める */
+        body .grid {
+          display: grid !important;
+          grid-template-columns: repeat(3, 1fr) !important;
+          gap: 20px !important;
+          max-width: 1000px !important;
+          margin: 0 auto !important;
+          width: 100% !important;
+        }
+      }
+      /* Informationの見出し用スタイル */
+      .heading-large {
+        /* 最小サイズ 1.5rem, 推奨サイズ 5vw, 最大サイズ 3rem とした場合 */
+        font-size: clamp(1.5rem, 5vw, 3rem);
+        text-align: center;
+      }
+      body .item {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 0 !important; /* 余計な隙間を詰める */
+      }
+      .cta-buttons {
+        display: flex; /* 横並びにする設定 */
+        justify-content: center; /* 中央寄せ */
+        gap: 100px; /* ここでボタン同士の間隔を調整します */
+        margin-top: 5rem; /* 上側との余白 */
+      }
+
+      /* 画面幅が狭いとき（スマホなど）は縦並びにする */
+      @media (max-width: 600px) {
+        .cta-buttons {
+          flex-direction: column; /* 縦並びに変更 */
+          gap: 20px; /* 縦並びの時の間隔を少し狭める */
+          align-items: center;
+        }
+      }
+      /* ボタンのサイズを揃える設定 */
+      .cta-buttons a {
+        display: inline-block; /* 横幅や高さを指定可能にする */
+        min-width: 150px; /* ここで最小の幅を指定（調整してください） */
+        padding: 15px 20px; /* 上下の余白を固定 */
+        text-align: center; /* テキストを中央寄せ */
+        box-sizing: border-box; /* パディングを含めたサイズ計算にする */
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="top-header">
+      <div class="logo">
+        <!-- 実際のロゴ画像の代わりにテキストを配置 -->
+        <!-- <h1><a href="#">長谷川酒造株式会社</a></h1> -->
+        <img
+          class="logo"
+          src="images/31833963-60DB-429D-B823-72A00010497C.png"
+          alt="TonnyFitホーム"
+        />
+      </div>
+
+      <nav>
+        <button class="btn-menu">MENU</button>
+        <ul class="nav-links font-english">
+          <li><a href="index.html">TOP</a></li>
+          <li><a href="news.html">NEWS</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="onlineshop/online.html">ONLINE STORE</a></li>
+          <!-- <li><a href="online.html" class="btn-online">ONLINE SHOP</a></li> -->
+        </ul>
+      </nav>
+    </header>
+
+    <div class="cover cover-home fade-in-up">
+      <!-- <header class="page-header wrapper">
+        <h1 class="align-center">
+          <a href="index.html"></a>
+        </h1>
+      </header> -->
+    </div>
+
+    <section class="about fade-in-up">
+      <h3 class="heading-large font-english">About TonnyFit</h3>
+      <p>
+        我々TonnyFitは、２０２６年３月に開始した“世界中のユーズド製品”をデニムを中心に取り扱い、通信販売を行っているサービスです。
+        <br />洋服はもちろん、アクセサリーや小物も取り扱っていますので、ぜひ一度ご覧になってください。
+      </p>
+    </section>
+    <!-- 
+    <video autoplay muted loop playsinline width="100%">
+      <source src="images/HP_CM1.mp4" type="video/mp4" />
+    </video> -->
+
+    <!-- 追加するこだわりセクションの例 -->
+    <section class="features wrapper fade-in-up">
+      <h2 class="font-english">Our Core</h2>
+      <div class="grid">
+        <div class="item">
+          <h3
+            class="font-english"
+            style="font-size: 1.5rem; margin-bottom: 1rem"
+          >
+            01. Rigid & Vintage
+          </h3>
+          <p>
+            時を経ても色褪せない、むしろ魅力を増すヴィンテージデニムだけを世界中からセレクト。
+          </p>
+        </div>
+        <div class="item">
+          <h3
+            class="font-english"
+            style="font-size: 1.5rem; margin-bottom: 1rem"
+          >
+            02. Only One
+          </h3>
+          <p>
+            大量生産にはない、ヒゲやアタリ、一つとして同じものがない「1点モノ」との出会いを提供します。
+          </p>
+        </div>
+        <div class="item">
+          <h3
+            class="font-english"
+            style="font-size: 1.5rem; margin-bottom: 1rem"
+          >
+            03. Sustainable Style
+          </h3>
+          <p>
+            良質なユーズド製品をケアし、永く愛用する。それこそが我々の提案するデニムライフです。
+          </p>
+        </div>
+      </div>
+
+      <!-- バナー配置エリア -->
+      <div class="banner-container">
+        <a
+          href="https://t0nny-stack.github.io/tonny_fit62/onlineshop/online.html"
+        >
+          <img
+            src="images/banner1.jpg"
+            alt="Tonny Fit オンラインストアへ"
+            class="banner-image"
+          />
+        </a>
+      </div>
+
+      <div class="cta-buttons fade-in-up">
+        <a class="btn btn-primary" href="onlineshop/online.html">ONLINESTORE</a>
+        <a class="btn btn-secondary" href="menu.html">LOOK BOOK</a>
+        <a class="btn btn-topics" href="news.html">TOPICS</a>
+      </div>
+    </section>
+
+    <!-- 動画エリア -->
+    <div style="width: 80%; max-width: 800px; margin: 100px auto 100px auto">
+      <video
+        id="tonnyVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        width="100%"
+        style="display: block; border-radius: 8px"
+      >
+        <source src="images/HP_CM1.mp4" type="video/mp4" />
+      </video>
+
+      <!-- 音声オン/オフ切り替えボタン（アイコン風） -->
+      <div style="text-align: right; margin-top: 10px">
+        <button
+          id="soundToggleBtn"
+          onclick="toggleSound()"
+          style="
+            margin: 0px 5px;
+            cursor: pointer;
+            color: rgb(255, 244, 237);
+            /* border: 1px solid rgb(255, 244, 237); */
+            border-radius: 20px;
+            font-weight: lighter;
+            font-size: 15px;
+            transition: all 0.3s;
+          "
+        >
+          🔇
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function toggleSound() {
+        var video = document.getElementById("tonnyVideo");
+        var btn = document.getElementById("soundToggleBtn");
+
+        if (video.muted) {
+          video.muted = false;
+          btn.innerHTML = "🔊";
+          btn.style.backgroundColor = "#e0f7fa"; // オン時は色を変える
+        } else {
+          video.muted = true;
+          btn.innerHTML = "🔇";
+          btn.style.backgroundColor = "#f4f4f4"; // オフ時は戻す
+        }
+      }
+    </script>
+    <script>
+      function toggleSound() {
+        var video = document.getElementById("tonnyVideo");
+        var btn = event.target;
+
+        if (video.muted) {
+          video.muted = false; // 音を出す
+          btn.innerText = "🔇";
+        } else {
+          video.muted = true; // 音を消す
+          btn.innerText = "🔊";
+        }
+      }
+    </script>
+
+    <script>
+      function toggleSound() {
+        var video = document.getElementById("tonnyVideo");
+        var btn = event.target;
+
+        if (video.muted) {
+          video.muted = false; // 音を出す
+          btn.innerText = "mute";
+        } else {
+          video.muted = true; // 音を消す
+          btn.innerText = "unmute";
+        }
+      }
+    </script>
+
+    <footer class="page-footer fade-in-up">
+      <!-- 枠線を繋げるために、全体を囲む div を追加します -->
+      <div class="info-container">
+        <h3 class="heading-large font-english">Information</h3>
+
+        <table class="info">
+          <tr>
+            <th>住所</th>
+            <td>東京都渋谷区表参道0-0 ○○○</td>
+          </tr>
+          <tr>
+            <th>電話</th>
+            <td>03-1111-XXXX</td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td>24h</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="copyright">
+        <small>&copy; 2026 Tonny Fit</small>
+      </div>
+    </footer>
+
+    <script>
+      // 1. 基本的なフェードイン
+      const fadeElements = document.querySelectorAll(".fade-in-up");
+      const fadeObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-active");
+            } else {
+              entry.target.classList.remove("is-active");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+      fadeElements.forEach((el) => fadeObserver.observe(el));
+
+      // 2. バナー専用のフェードイン
+      const bannerObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            } else {
+              entry.target.classList.remove("is-visible");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      const banner = document.querySelector(".banner-container");
+      if (banner) {
+        bannerObserver.observe(banner);
+      }
+
+      // 3. メニューボタンの開閉
+      const btn = document.querySelector(".btn-menu");
+      const nav = document.querySelector(".nav-links");
+
+      // ボタンが存在するかチェックしてからイベントを登録
+      if (btn && nav) {
+        btn.addEventListener("click", () => {
+          nav.classList.toggle("open-menu");
+          btn.innerHTML = btn.innerHTML === "MENU" ? "CLOSE" : "MENU";
+        });
+      }
+    </script>
+  </body>
+</html>

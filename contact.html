@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tonny Fit - CONTACT</title>
+    <meta name="description" content="ユーズド専門の洋服通販サイト" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--ファビコン-->
+    <link
+      rel="icon"
+      type="image/png"
+      href="images/31833963-60DB-429D-B823-72A00010497C.png"
+    />
+
+    <!--リセットCSS-->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+
+    <!--googleフォント-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Philosopher&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--オリジナルCSS-->
+    <link rel="stylesheet" href="css/tonnyfit.css" />
+
+    <style>
+      /* ===================================================
+               ヘッダー（ロゴ・メニュー）の統一設定
+               =================================================== */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2000;
+        padding: 20px 0;
+        /* クリーム色の半透明 */
+        background: rgba(255, 250, 240, 0.6);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* ロゴの左端寄せ */
+      header .logo {
+        margin-left: 20px;
+      }
+
+      /* MENUボタンの配置とデザイン */
+      .btn-menu {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background-color: transparent; /* 背景を透明に */
+        border: 1px solid rgb(255, 246, 237); /*枠線 */
+        color: rgb(36, 36, 36); /* 👈 文字色も全体のテーマカラーに合わせる */
+        padding: 0.5rem 1rem;
+        z-index: 2000;
+        cursor: pointer;
+        font-family: "Philosopher", sans-serif;
+        font-weight: bold;
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+        background: transparent;
+        transition: 0.3s;
+        border-radius: 10px;
+      }
+
+      /* ボタンのホバー設定 */
+      .btn-menu:hover {
+        background-color: #a76f4e;
+        color: rgb(255, 244, 237) !important;
+        border-color: transparent;
+      }
+      /* CONTACTページ専用：メニュー開閉時の文字色を黒っぽくする */
+      .nav-links.open-menu a {
+        color: rgb(
+          156,
+          104,
+          69
+        ) !important; /* ここを好きな色に変えてください */
+      }
+      /* CONTACTページ専用：メニュー開閉時の文字色を黒っぽくする */
+      .nav-links.open-menu a:hover {
+        color: #0bd !important; /* ここを好きな色に変えてください */
+      }
+      /* ===================================================
+               【CONTACTページ専用】縦長カバー画像の設定（ヘッダーと分離）
+               =================================================== */
+      .sub-cover {
+        height: 700px !important; /* Newsと同じ縦長サイズにキープ */
+        background-size: cover !important;
+        background-position: center !important;
+        margin-bottom: 10rem !important;
+
+        /* 文字を中央に配置するための設定 */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* パソコン画面（800px以上）のときの微調整 */
+      @media (min-width: 800px) {
+        .sub-cover {
+          height: 800px !important;
+          margin-bottom: 12rem !important;
+        }
+        .page-footer {
+          margin-top: 15rem !important;
+        }
+      }
+
+      /* フッターの上の余白設定 */
+      .page-footer {
+        margin-top: 12rem !important;
+      }
+
+      /* ===================================================
+               元のQ&A（アコーディオン）などのオリジナルスタイル
+               =================================================== */
+      /* アコーディオン全体 */
+      .faq {
+        max-width: 800px;
+        margin: 0 auto 5rem;
+        padding: 0 1.5rem;
+        font-size: 100%;
+      }
+
+      /* 1つのQ&Aブロック */
+      .accordion-item {
+        border-bottom: 1px solid #ddd;
+      }
+
+      /* 質問ボタン */
+      .accordion-question {
+        width: 100%;
+        text-align: left;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 1.25rem 2.5rem 1.25rem 0;
+        font-size: 1.1rem;
+        font-family: inherit;
+        color: rgb(255, 242, 229);
+        position: relative;
+        line-height: 1.6;
+      }
+
+      /* 矢印アイコン */
+      .accordion-question::after {
+        content: "▼";
+        position: absolute;
+        right: 0.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.75rem;
+        color: #0bd;
+        transition: transform 0.3s;
+      }
+
+      /* 開いたときに矢印を反転 */
+      .accordion-question.is-open::after {
+        transform: translateY(-50%) rotate(180deg);
+      }
+
+      /* 回答（初期状態：非表示） */
+      .accordion-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+
+      /* 回答（開いた状態） */
+      .accordion-answer.is-open {
+        max-height: 300px;
+      }
+
+      .accordion-answer p {
+        padding: 0 0.5rem 1.25rem;
+        color: rgb(255, 242, 229);
+        line-height: 1.8;
+      }
+
+      .faq1:hover {
+        color: #0bd;
+      }
+
+      /* Q / A ラベル */
+      .label-q,
+      .label-a {
+        display: inline-block;
+        font-family: "Philosopher", sans-serif;
+        font-size: 1.1rem;
+        font-weight: bold;
+        margin-right: 0.5rem;
+      }
+      .label-q {
+        color: #0bd;
+      }
+      .label-a {
+        color: rgb(255, 242, 229);
+      }
+
+      .faq h3 {
+        font-size: 2rem;
+      }
+      /* お問い合わせボタンのサイズ調整 */
+      .email .btn-primary {
+        width: auto !important; /* 固定幅を解除 */
+        min-width: 200px !important; /* 最小幅を確保（必要なら数字を調整） */
+        padding: 1rem 2rem !important; /* 内側の余白でボタンの大きさを調整 */
+        margin: 20px 0 !important; /* 上下の余白調整 */
+        border-radius: 10px;
+      }
+      /* その他お問い合わせのh3専用サイズ */
+      .email h3 {
+        font-size: 2rem !important; /* お好みの数字に変更してください */
+      }
+      /* ===================================================
+               【スマホ版専用】見出し文字が大きすぎるのを綺麗に縮める調整（Newsと統一）
+               =================================================== */
+      @media (max-width: 799px) {
+        .faq-title {
+          font-size: 2.2rem !important;
+          text-align: center;
+          margin-top: 4rem !important;
+          margin-bottom: 2rem !important;
+        }
+        .wrapper .heading-midium.font-english {
+          font-size: 2.2rem !important;
+          margin-top: 4rem !important;
+          margin-bottom: 1.5rem !important;
+        }
+      }
+
+      /* パソコン画面用の元々の見出しサイズ設定 */
+      @media (min-width: 800px) {
+        .faq-title {
+          font-size: 3rem;
+          text-align: center;
+          margin-top: 2rem;
+          margin-bottom: 2rem;
+        }
+      }
+
+      /* ===================================================
+               【アニメーション基本ルール】スクロールでフワッと動く設定
+               =================================================== */
+      .fade-in-up {
+        opacity: 0 !important;
+        transform: translateY(40px) !important;
+        transition:
+          opacity 1.2s ease,
+          transform 1.2s ease !important;
+      }
+      .fade-in-up.is-active {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+
+      .store-banner-wrapper {
+        width: 100%;
+        max-width: 1200px; /* オンライントップのレイアウト幅に合わせてください */
+        margin: 60px auto;
+        padding: 0 20px;
+        text-align: center;
+      }
+
+      .store-banner {
+        display: block;
+        width: 100%;
+        height: 100%; /* スタイリングページと高さを統一 */
+        object-fit: cover;
+        object-position: top;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+
+      .store-banner:hover {
+        transform: scale(1.01);
+      }
+
+      /* Instagramの投稿を中央寄せにする */
+      .sns-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* これで中央に寄ります */
+        gap: 20px; /* 投稿同士の間隔 */
+      }
+      /* Informationの見出し用スタイル */
+      .heading-large {
+        /* 最小サイズ 1.5rem, 推奨サイズ 5vw, 最大サイズ 3rem とした場合 */
+        font-size: clamp(1.5rem, 5vw, 3rem);
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 💡 ① ヘッダーをカバー画像の外に出して独立（めり込みを解消！） -->
+    <header>
+      <div class="logo">
+        <img
+          class="logo"
+          src="images/31833963-60DB-429D-B823-72A00010497C.png"
+          alt="TonnyFitホーム"
+        />
+      </div>
+      <nav>
+        <button class="btn-menu">MENU</button>
+        <ul class="nav-links font-english">
+          <li><a href="index.html">TOP</a></li>
+          <li><a href="news.html">NEWS</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="onlineshop/online.html">ONLINE STORE</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- 💡 ② カバー画像は単体でフワッと動くように修正 -->
+    <div class="sub-cover cover-contact fade-in-up">
+      <h2 class="page-title font-english">Contact</h2>
+    </div>
+
+    <main class="wrapper">
+      <!-- 🗺️ ロケーションセクション -->
+      <section class="location fade-in-up">
+        <div class="location-info">
+          <h3 class="heading-midium font-english">Information</h3>
+          <table class="info">
+            <tr>
+              <th>住所</th>
+              <td>東京都渋谷区表参道0-0 ○○○</td>
+            </tr>
+            <tr>
+              <th>電話</th>
+              <td>03-1111-ZZZZ</td>
+            </tr>
+            <tr>
+              <th>営業時間</th>
+              <td>24h</td>
+            </tr>
+          </table>
+        </div>
+        <div class="location-map">
+          <iframe
+            src="https://www.google.com/maps/d/embed?mid=1KZsHNc_QAti51spSMZNdSXN8-cuVYgY&ehbc=2E312F"
+            width="640"
+            height="480"
+          ></iframe>
+        </div>
+      </section>
+
+      <!-- 店舗案内バナーエリア -->
+      <section class="store-banner-wrapper fade-in-up">
+        <a href="（店舗詳細ページのURL）">
+          <img
+            src="images/banner3.jpg"
+            alt="TonnyFit 表参道ヒルズ店 店舗情報"
+            class="store-banner"
+          />
+        </a>
+      </section>
+
+      <!-- ❓ FAQ（Q&A）セクション -->
+      <section
+        class="faq-section fade-in-up"
+        style="max-width: 800px; margin: 0 auto"
+      >
+        <h3 class="faq-title font-english">Q&A</h3>
+
+        <div class="accordion-item">
+          <button class="accordion-question">
+            <span class="label-q">Q.</span>商品はすべて古着（ユーズド）ですか？
+          </button>
+          <div class="accordion-answer">
+            <p>
+              <span class="label-a">A.</span>はい、Tonny
+              Fitで取り扱っている商品はバイヤーが厳選したユーズド（古着）およびヴィンテージアイテムとなります。一点モノならではの風合いをお楽しみください。
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-question">
+            <span class="label-q">Q.</span
+            >商品の状態（コンディション）は確認できますか？
+          </button>
+          <div class="accordion-answer">
+            <p>
+              <span class="label-a">A.</span
+              >各商品ページにて、傷や汚れ、色落ちの度合いなどのコンディション詳細を写真と合わせて記載しております。ご購入前に必ずご確認ください。
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-question">
+            <span class="label-q">Q.</span
+            >サイズが合わなかった場合、返品・交換はできますか？
+          </button>
+          <div class="accordion-answer">
+            <p>
+              <span class="label-a">A.</span
+              >ユーズド商品の一点モノという特性上、お客様都合による返品・交換は原則お受けしておりません。各ページに実寸サイズを記載しておりますので、お手持ちの洋服と比較の上ご購入ください。
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-question">
+            <span class="label-q">Q.</span
+            >オンラインショップで購入した商品はどれくらいで届きますか？
+          </button>
+          <div class="accordion-answer">
+            <p>
+              <span class="label-a">A.</span
+              >通常、ご注文完了（決済確認後）から2〜4営業日以内に発送いたします。発送が完了しましたら、追跡番号を記載したメールをお送りいたします。
+            </p>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <button class="accordion-question">
+            <span class="label-q">Q.</span
+            >実店舗での試着や販売は行っていますか？
+          </button>
+          <div class="accordion-answer">
+            <p>
+              <span class="label-a">A.</span
+              >現在はオンラインショップ専門として運営しておりますが、表参道のオフィスにて不定期でポップアップストア（展示販売会）を開催しております。開催情報はNEWSやInstagramにて告知いたします。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ✉️ お問い合わせフォームセクション -->
+      <section class="email fade-in-up" style="margin-top: 5rem">
+        <h3 class="heading-midium font-english">その他お問い合わせ</h3>
+        <p>
+          Q&Aにないお問い合わせにつきましては、メールフォームに内容を記載の上ご送信ください。２営業日以内にご返信させていただきます。
+        </p>
+        <div class="align-center">
+          <a class="btn-primary" href="mailto:tonnyfitinfo@example.com"
+            >メールで問い合わせ</a
+          >
+        </div>
+      </section>
+
+      <!-- 📸 Instagram投稿セクション -->
+      <section class="sns fade-in-up">
+        <h3 class="heading-midium font-english">Instagram</h3>
+        <div class="sns-grid">
+          <!-- 投稿1 -->
+          <blockquote
+            class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/p/DXRNUXukcmz/"
+            data-instgrm-version="14"
+            style="
+              background: #fff;
+              border: 0;
+              border-radius: 3px;
+              box-shadow:
+                0 0 1px 0 rgba(0, 0, 0, 0.5),
+                0 1px 10px 0 rgba(0, 0, 0, 0.15);
+              margin: 1px;
+              max-width: 540px;
+              min-width: 326px;
+              padding: 0;
+              width: 99.375%;
+              width: -webkit-calc(100% - 2px);
+              width: calc(100% - 2px);
+            "
+          ></blockquote>
+          <!-- 投稿2 -->
+          <blockquote
+            class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/p/DXjO-DjkdYC/"
+            data-instgrm-version="14"
+            style="
+              background: #fff;
+              border: 0;
+              border-radius: 3px;
+              box-shadow:
+                0 0 1px 0 rgba(0, 0, 0, 0.5),
+                0 1px 10px 0 rgba(0, 0, 0, 0.15);
+              margin: 1px;
+              max-width: 540px;
+              min-width: 326px;
+              padding: 0;
+              width: 99.375%;
+              width: -webkit-calc(100% - 2px);
+              width: calc(100% - 2px);
+            "
+          ></blockquote>
+          <!-- 投稿3 -->
+          <blockquote
+            class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/p/DXeFYW5kVju/"
+            data-instgrm-version="14"
+            style="
+              background: #fff;
+              border: 0;
+              border-radius: 3px;
+              box-shadow:
+                0 0 1px 0 rgba(0, 0, 0, 0.5),
+                0 1px 10px 0 rgba(0, 0, 0, 0.15);
+              margin: 1px;
+              max-width: 540px;
+              min-width: 326px;
+              padding: 0;
+              width: 99.375%;
+              width: -webkit-calc(100% - 2px);
+              width: calc(100% - 2px);
+            "
+          ></blockquote>
+          <!-- 投稿4 -->
+          <blockquote
+            class="instagram-media"
+            data-instgrm-permalink="https://www.instagram.com/p/DXJRQfHkliv/"
+            data-instgrm-version="14"
+            style="
+              background: #fff;
+              border: 0;
+              border-radius: 3px;
+              box-shadow:
+                0 0 1px 0 rgba(0, 0, 0, 0.5),
+                0 1px 10px 0 rgba(0, 0, 0, 0.15);
+              margin: 1px;
+              max-width: 540px;
+              min-width: 326px;
+              padding: 0;
+              width: 99.375%;
+              width: -webkit-calc(100% - 2px);
+              width: calc(100% - 2px);
+            "
+          ></blockquote>
+
+          <script async src="https://www.instagram.com/embed.js"></script>
+        </div>
+      </section>
+    </main>
+
+    <!-- 🧱 フッターエリア -->
+    <footer class="page-footer fade-in-up">
+      <div class="info-container">
+        <h3 class="heading-large font-english">Information</h3>
+        <table class="info">
+          <tr>
+            <th>住所</th>
+            <td>東京都渋谷区表参道0-0 ○○○</td>
+          </tr>
+          <tr>
+            <th>電話</th>
+            <td>03-1111-XXXX</td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td>24h</td>
+          </tr>
+        </table>
+      </div>
+      <div class="copyright">
+        <small>&copy; 2026 Tonny Fit</small>
+      </div>
+    </footer>
+
+    <!-- ⚙️ JavaScript（メニュー開閉 ＋ スクロールでフワッと動く機能を統合） -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. メニュー開閉
+        const btn = document.querySelector(".btn-menu");
+        const nav = document.querySelector(".nav-links");
+
+        if (btn && nav) {
+          btn.addEventListener("click", () => {
+            nav.classList.toggle("open-menu");
+            if (btn.innerHTML === "MENU") {
+              btn.innerHTML = "CLOSE";
+            } else {
+              btn.innerHTML = "MENU";
+            }
+          });
+        }
+
+        // 2. Q&Aアコーディオンの開閉処理（元の機能を維持）
+        const questions = document.querySelectorAll(".accordion-question");
+        questions.forEach((question) => {
+          question.addEventListener("click", () => {
+            const answer = question.nextElementSibling;
+            question.classList.toggle("is-open");
+            answer.classList.toggle("is-open");
+            if (answer.classList.contains("is-open")) {
+              answer.style.maxHeight = answer.scrollHeight + "px";
+            } else {
+              answer.style.maxHeight = "0";
+            }
+          });
+        });
+
+        // 3. スクロールでフワッと（スクロールするたびに動く設定）
+        const fadeInUpTargets = document.querySelectorAll(".fade-in-up");
+
+        if (fadeInUpTargets.length > 0) {
+          const observerOptions = {
+            root: null,
+            rootMargin: "-10% 0px",
+            threshold: 0.05,
+          };
+
+          const observerCallback = (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // 画面に入ったらクラスを付ける
+                entry.target.classList.add("is-active");
+              } else {
+                // 💡 ここを復活させる：画面から出たらクラスを外す
+                entry.target.classList.remove("is-active");
+              }
+            });
+          };
+
+          const observer = new IntersectionObserver(
+            observerCallback,
+            observerOptions,
+          );
+          fadeInUpTargets.forEach((target) => observer.observe(target));
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,956 @@
+@charset "UTF-8";
+
+/* 共通部分
+------------------------------- */
+
+/* 右側の余白を強制的に消す */
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 100%;
+  background-color: #250900;
+}
+body {
+  font-family:
+    "Hiragino Kaku Gothic ProN", "Hiragino Sans", "BIZ UDPGothic", sans-serif;
+  line-height: 1.7;
+  color: rgba(255, 233, 220, 0.938);
+}
+a {
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+
+/*レイアウト*/
+.wrapper {
+  max-width: 1120px;
+  margin: auto;
+  padding: 0.5rem;
+}
+.align-center {
+  text-align: center;
+}
+
+/* タブ下の見出し */
+.font-english {
+  font-family: "Philosopher", sans-serif;
+  font-weight: normal;
+  margin-bottom: 30px;
+  font-size: 5rem;
+}
+.page-title,
+.heading-large,
+.heading-midium {
+  text-align: left;
+  line-height: 1.3;
+  margin-top: 6rem;
+  margin-bottom: 2rem;
+}
+.page-title {
+  font-size: 80px;
+  color: rgba(255, 233, 220, 0.938);
+  background-color: rgb(73, 15, 0);
+  font-weight: bold;
+}
+
+/*サイドバー*/
+.side-menu {
+  list-style: none;
+  text-align: center;
+  margin-bottom: 7rem;
+}
+.side-menu li {
+  border-bottom: 1px solid rgb(255, 233, 220);
+}
+.side-menu a {
+  color: #0bd;
+  display: block;
+  padding: 1rem;
+}
+.side-menu a:hover {
+  color: #006e81;
+}
+
+/*ボタン*/
+.btn {
+  display: inline-block;
+  font-size: 1rem;
+  background-color: rgb(110, 50, 0);
+  color: rgb(255, 233, 220);
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  transition: 0.5s;
+  margin: 50px 0 50px 0;
+}
+.btn:hover {
+  background-color: #006e81;
+  transition: 0.5s;
+  scale: 1.2;
+}
+
+/* iframe */
+iframe {
+  width: 100%;
+}
+
+/* ヘッダー */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 20px;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: fixed;
+  width: 100%;
+  height: 80px;
+  top: 0;
+  z-index: 100;
+}
+header h1 {
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+.nav-links a {
+  color: rgb(22, 22, 22);
+  font-size: 1.3rem;
+}
+.nav-links a:hover {
+  color: #0bd;
+}
+
+.page-header {
+  padding-top: 0.5rem;
+}
+.logo {
+  width: 130px;
+  justify-content: left;
+  color: rgb(255, 233, 220);
+  display: flex;
+  margin-top: 5px;
+}
+
+/* 折り畳みメニュー */
+.nav-links {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100vh;
+  background: none;
+  padding: 70px 24px 30px 24px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 15px;
+  list-style: none;
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+}
+.nav-links.open-menu {
+  transform: translateX(0);
+}
+.nav-links li {
+  width: auto;
+}
+.nav-links a {
+  display: block;
+  color: rgb(255, 233, 220);
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 5px 0;
+}
+.nav-links a:hover {
+  color: #0bd;
+}
+.h1 a {
+  justify-content: left;
+}
+
+/*ヘッダーカバー画像*/
+.cover {
+  background-size: 100%;
+  background-position: center bottom;
+  height: 800px;
+}
+.sub-cover {
+  background-size: cover;
+  background-position: center bottom;
+  height: 528px;
+  margin-bottom: 4rem;
+}
+.cover-home {
+  background-image: url(../images/IMG_5486\ .jpg);
+}
+
+/* HOME */
+.about {
+  max-width: 736px;
+  padding: 01.5rem;
+  margin: 3rem auto 0;
+  color: rgb(255, 233, 220);
+}
+.about p {
+  margin-bottom: 3rem;
+  margin-left: 3rem;
+  color: rgb(255, 233, 220);
+}
+.about h3 {
+  color: rgb(255, 233, 220);
+  margin-bottom: 3rem;
+  margin-left: 3rem;
+}
+
+/*NEWS*/
+.cover-news {
+  background-image: url(../images/ashleaf-denim-7241697_1920.jpg);
+}
+.ad-title {
+  margin-top: 50px;
+  font-size: 80px;
+  text-align: center;
+}
+
+/* MENU */
+.cover-menu {
+  background-image: url(../images/jarmoluk-jeans-428614_1920.jpg);
+}
+.grid {
+  display: grid;
+  gap: 2rem 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+}
+.item img {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 16px;
+  margin: 1rem 0 2rem 0;
+}
+.item p {
+  font-size: 0.875rem;
+  margin-bottom: 3rem;
+}
+
+/* CONTACT */
+.cover-contact {
+  background-image: url(../images/martinkwame-woman-5815354_1920.jpg);
+}
+.location {
+  margin-bottom: 3.5rem;
+}
+.location-info {
+  margin-bottom: 2rem;
+}
+.location-info .info {
+  padding: 0;
+}
+.email {
+  max-width: 916px;
+  border-radius: 48px;
+  padding: 1.5rem 2.5rem 2.5rem;
+  margin: 0 auto 2rem;
+}
+.email p {
+  margin: 1rem 8rem 2rem 8rem;
+}
+
+/*記事部分*/
+.post {
+  margin-bottom: 3rem;
+}
+.post-title {
+  font-weight: normal;
+  margin-bottom: 1.25rem;
+}
+.post-info {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.post-cat {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+}
+.post-cat a {
+  color: #432;
+  background-color: #86d3dd;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+}
+.post-cat a:hover {
+  background-color: #157a88;
+}
+.post-date {
+  font-size: 0.875rem;
+}
+.post-thumbnail {
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+}
+.post p {
+  margin-bottom: 1.5rem;
+  line-height: 2;
+}
+.ad {
+  border-radius: 16px;
+}
+
+/* デスクトップ用の設定 */
+@media (min-width: 768px) {
+  .banner-img {
+    transform: scale(2); /* 2倍の大きさに拡大 */
+    transform-origin: center center; /* 中心を基準に拡大 */
+    margin: 50px 0; /* 拡大して重なった部分を避けるための余白調整 */
+  }
+  /* もし特定のエリアだけもっと大きくしたい場合 */
+  .banner-container {
+    width: 100vw; /* 画面幅いっぱいに */
+    margin-left: calc(50% - 50vw); /* 画面中央に配置 */
+  }
+}
+
+/*フッター*/
+.page-footer {
+  background-image: url(../images/ashleaf-denim-7241697_1920.jpg);
+  background-size: cover;
+  background-position: top;
+  margin-top: 0;
+}
+
+.info-container {
+  background-color: rgba(58, 18, 0, 0.8);
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 2rem 2rem 0 2rem;
+  border-radius: 16px;
+  text-align: center;
+}
+.info {
+  width: 100%;
+  border-spacing: 0;
+  background-color: transparent;
+  margin-top: 2rem;
+}
+.info th,
+.info td {
+  background-color: transparent;
+  border-bottom: 1px solid #c9c2bc;
+}
+.info-container .heading-large {
+  margin-top: 0;
+  color: rgb(255, 233, 220);
+}
+.heading-large {
+  text-align: center;
+  size: 80px;
+}
+.info {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  border-spacing: 0;
+}
+.info th,
+.info td {
+  border-bottom: 1px solid rgb(255, 233, 220);
+}
+.info th {
+  padding-left: 1rem;
+}
+.info td {
+  padding: 2rem 0;
+}
+.copyright {
+  background-color: #130400;
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 6rem;
+  color: rgb(255, 233, 220);
+}
+
+/* ===================================================
+   修正：各セクションの余白と左揃えの微調整
+   =================================================== */
+/* 修正前 */
+.about {
+  max-width: 1120px; /* ここが狭いと左右に余白ができる */
+  margin: 12rem auto 6rem auto !important;
+  padding: 0 1rem;
+}
+.features {
+  max-width: 1120px; /* 同上 */
+  margin: 0 auto 4rem auto !important;
+  padding: 0 1rem;
+}
+.features .item h3 {
+  font-family: "Philosopher", sans-serif;
+  font-size: 1.8rem;
+  color: rgb(255, 233, 220);
+  border-bottom: 1px solid rgba(255, 233, 220, 0.2);
+  padding-bottom: 0.5rem;
+}
+
+/* 2連ボタンの横並び設定 */
+.cta-buttons {
+  display: block;
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  margin: 0 1rem;
+  padding: 2rem 0;
+}
+
+/* 枠線ボタンの共通デザイン（ここで間隔を完全制御！） */
+.btn-primary,
+.btn-secondary,
+.btn-topics {
+  display: inline-block !important; /* 横並びにする */
+  background-color: transparent !important;
+  color: rgb(255, 233, 220) !important;
+  border: 1px solid rgb(153, 69, 0) !important;
+  width: 180px !important; /* 横幅をきれいに統一 */
+  text-align: center;
+
+  /* 💡 【大本命】邪魔していた 0 !important を消し去り、ここで等間隔（上下10px、左右20px）を設定！ */
+  margin: 10px 20px !important;
+}
+
+/* ボタンにマウスを乗せたときの変化 */
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-topics:hover {
+  background-color: #157a88 !important;
+  color: rgb(255, 233, 220) !important;
+}
+/* ===================================================
+     【Information完全版】スマホ・PCどちらも中央揃えにする
+     =================================================== */
+
+/* 1. 【スマホ・PC共通】Informationの見出しを中央揃えにする */
+.info-container .heading-large {
+  text-align: center !important;
+}
+
+/* 2. 【スマホ・PC共通】表全体を真ん中に寄せ、広がりすぎないようにする */
+.page-footer .info {
+  margin: 2rem auto 0 auto !important; /* 左右をautoにして中央寄せ */
+  max-width: 600px !important; /* 表の横幅をちょうどいいサイズに固定 */
+  width: 100% !important;
+}
+
+/* 3. 【スマホ・PC共通】左側の巨大な余白を完全に消して、中身のバランスを整える */
+.page-footer .info th {
+  padding-left: 20px !important;
+  text-align: left;
+}
+.page-footer .info td {
+  padding-left: 40px !important; /* パソコン版の280pxも、スマホ版の余白も一括リセット！ */
+  text-align: left;
+}
+
+/* ===================================================
+   デスクトップ版（パソコン画面用のレスポンシブ）
+   =================================================== */
+@media (min-width: 800px) {
+  .nav-links {
+    gap: 20px !important;
+  }
+  .nav-links a {
+    color: rgb(255, 233, 220) !important;
+  }
+  .nav-links a:hover {
+    color: #0bd !important;
+  }
+
+  /* 💡 原因箇所：ここで余白が初期化されていたのを修正 */
+  .page-title,
+  .heading-large,
+  .heading-midium {
+    font-size: 3rem;
+    text-align: left;
+    margin-top: 6rem;
+    margin-bottom: 1.5rem; /* 見出しの下の余白を縮小 */
+  }
+
+  /* 💡 【ピンポイント修正】Our Coreセクション内の見出しの下だけ、さらに隙間をなくす */
+  .features .heading-large {
+    margin-bottom: 0.5rem !important;
+  }
+  .features .grid {
+    margin-top: 0 !important;
+  }
+
+  .post-title {
+    font-size: 2rem;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+  }
+  .main-nav {
+    font-size: 2rem;
+  }
+  .nav-links {
+    gap: 4rem;
+    margin-right: 1.5rem;
+  }
+  .sub-cover {
+    height: 400px;
+    margin-bottom: 6rem;
+  }
+  .cover-home {
+    background-image: url(../images/85979D07-23DB-4842-A362-60F8D584037B\ \(1\).png);
+    background-position: center;
+    background-size: 1400px;
+    margin-top: 6rem;
+    background-color: rgba(43, 10, 0, 0.4);
+    background-blend-mode: multiply;
+  }
+  .cover-news {
+    background-image: url(../images/ashleaf-denim-7241697_1920.jpg);
+  }
+  .news-contents {
+    display: flex;
+    justify-content: space-between;
+  }
+  .post {
+    width: 50%;
+    order: 2;
+  }
+  .sidebar {
+    width: 20%;
+    order: 3;
+  }
+  .ad {
+    order: 1;
+    width: 20%;
+    height: 900px;
+    overflow: hidden;
+    margin-top: 10px;
+  }
+  .ad img {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+  .ad-title {
+    margin-top: 50px;
+    font-size: 50px;
+    text-align: center;
+  }
+  .sidebar .heading-midium {
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .grid {
+    gap: 3rem 2rem;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .location {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    max-width: 1120px;
+    margin: 0 auto 3.5rem;
+    padding: 0 1rem;
+  }
+  .location-info {
+    flex: 1;
+    max-width: 400px;
+    margin-bottom: 0;
+  }
+  .location-info .info th {
+    padding-left: 2rem;
+  }
+  .location-map {
+    flex: 1;
+    max-width: 720px;
+    margin-top: 5rem;
+  }
+  .location-map iframe {
+    width: 100%;
+  }
+  .email {
+    margin-bottom: 4rem;
+  }
+  .sns-item {
+    display: grid;
+    gap: 2rem 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 5rem;
+  }
+
+  .page-footer {
+    background-image: url(../images/kranich17-jeans-5394561_1920.jpg);
+    padding-top: 3rem !important;
+    margin-top: 0 !important;
+  }
+
+  .page-footer .info th {
+    padding-left: 100px;
+  }
+  .page-footer .info td {
+    padding: 2rem 0;
+    padding-left: 280px;
+  }
+  .info {
+    width: 100%;
+    max-width: 150rem;
+  }
+  .location-info .info th {
+    padding-left: 10px;
+    width: 35%;
+  }
+  .location-info .info td {
+    padding-left: 10px;
+  }
+  /* 💡 ここに差し込む！ */
+  .features .grid {
+    margin-top: 0 !important;
+  }
+  .features .grid .item h3 {
+    margin-top: 0 !important;
+  }
+
+  /* 【最終決着】5rem（爆大）になっていたOur Coreのサイズをちょうどよく上書き */
+  .features h2.font-english {
+    font-size: 3rem !important; /* 👈 ここでお好みのサイズにねじ伏せます！ */
+    margin-bottom: 1.5rem !important;
+    margin-left: 3rem;
+  }
+}
+
+/* ===================================================
+   【完全復活】スクロールでフワッと浮き上がらせるアニメーション
+   =================================================== */
+
+/* 1. 動かす前の初期状態（最初は透明で、少し下に下げておく） */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 1s ease,
+    transform 1s ease; /* 1秒かけてじわっと動かす */
+}
+
+/* 2. JavaScriptが画面を検知して「is-active」がついた瞬間の状態 */
+.fade-in-up.is-active {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ===================================================
+   CONTACTページ（contact.html）のレイアウト崩れ防止・ピンポイント修正
+   =================================================== */
+
+/* 1. パソコン画面（800px以上）のときのコンタクトページ専用調整 */
+@media (min-width: 800px) {
+  /* フッターの280px余白の巻き添えを食らっていた、マップ横のテーブルを救出 */
+  .location-info .info th {
+    padding-left: 10px !important;
+    width: 25% !important;
+    text-align: left !important;
+    background-color: transparent !important;
+  }
+
+  .location-info .info td {
+    padding: 1.5rem 0 !important;
+    padding-left: 20px !important; /* 280pxの巨大なズレを完全に上書きリセット！ */
+    text-align: left !important;
+  }
+
+  /* 地図と住所が並ぶエリア全体の上の余白をきれいに整える */
+  .location {
+    margin-top: 4rem !important;
+    align-items: center !important; /* 地図と文字の縦の中心を揃える */
+  }
+
+  /* 下方のコンテンツの見出し（Information、その他お問い合わせ）は左揃えに統一 */
+  .location-info .heading-midium,
+  .email .heading-midium,
+  .sns-item .heading-midium {
+    font-size: 3rem !important;
+    text-align: left !important;
+    margin-top: 0 !important;
+    margin-bottom: 1.5rem !important;
+  }
+}
+
+/* 2. 【スマホ・PC共通】Q&Aセクションとフォームの文字の揃え方 */
+.email p {
+  text-align: left !important;
+  margin: 1rem 0 2rem 0 !important; /* 真ん中にすぼまっていた不自然な左右の大きな余白を解放 */
+}
+
+/* Q&Aのタイトルも他のセクション見出しと合わせて左揃えに */
+.faq-title {
+  text-align: left !important;
+  font-size: 3rem !important;
+  margin-top: 5rem !important;
+  margin-bottom: 2rem !important;
+}
+
+/* 3. 💡 メインタイトル「Contact」と「News」を強制的に中央揃えにする設定 */
+.cover-contact .page-title,
+.cover-news .page-title,      /* 👈 ここに「cover-news」を追加しました！ */
+.sub-cover .page-title {
+  text-align: center !important;
+  width: 100% !important;
+  left: 0 !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* 4. 💡 スマホ版（画面幅が799px以下）のときだけ、サイドバーの見出しとメニューを中央揃えにする */
+@media (max-width: 799px) {
+  /* Category と Archives の見出しを中央に */
+  .sidebar .heading-midium {
+    text-align: center !important;
+    margin-top: 3rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* その下のメニューリンク（お店の紹介、2023年など）も中央に */
+  .sidebar .side-menu {
+    text-align: center !important;
+    padding-left: 0 !important; /* 左側の余計な余白をカットしてど真ん中に */
+  }
+
+  .sidebar .side-menu li {
+    display: block !important;
+    text-align: center !important;
+  }
+}
+/* 5. 💡 【トップページ用】スマホ版（画面幅が799px以下）のときのレイアウト調整 */
+@media (max-width: 799px) {
+  /* 🔥 【最重要】About TonnyFit と Our Core の文字を絶対に中央揃えにする */
+  .about h2,
+  .about-content h2,
+  #about h2,
+  .about .heading-large, /* 👈 これらが大元の強力な左揃えを上書きします！ */
+  .wrapper h2,
+  .page-title,
+  main h2 {
+    text-align: center !important;
+    font-size: 3rem !important; /* スマホで見やすい迫力あるサイズに調整 */
+    width: 100% !important;
+    left: 0 !important;
+    margin-left: 0 !important;
+    text-align: center !important;
+  }
+
+  /* 「01, 02, 03」の3つ並ぶブロック（Our Coreの中身）を縦並びにする */
+  .grid,
+  .features,
+  .core-container,
+  main .wrapper > div {
+    display: flex !important;
+    flex-direction: column !important; /* 縦一列に並べる */
+    align-items: center !important;
+    gap: 3rem !important; /* ブロック同士の上下の間隔 */
+  }
+}
+
+/* 各ブロック自体の幅をスマホいっぱいに広げる */
+.grid > div,
+.features > div,
+.core-item {
+  width: 100% !important;
+  max-width: 400px !important; /* 広がりすぎないように制限 */
+  text-align: center !important; /* ブロック内の文字も中央揃えに */
+  margin: 0 auto;
+}
+
+/* 下部にある3つのボタン（ONLINE STORE, LOOK BOOK, TOPICS）*/
+/* .cta-buttons {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center; 
+  gap: 1.5rem 1.5rem !important; 
+  margin-top: 3rem !important;
+  max-width: 800px;
+  padding: auto;
+  justify-content: space-around;
+} */
+
+/* 2連（3連）ボタンの横並び設定 */
+.cta-buttons {
+  display: flex; /* Flexboxを有効化 */
+  justify-content: center; /* 横並びにして中央揃え */
+  gap: 50px; /* ボタン同士の間隔 */
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+  /* flex-wrap: wrap;  */
+}
+
+/* 枠線ボタンの共通デザイン */
+.btn-primary,
+.btn-secondary,
+.btn-topics {
+  display: inline-block !important;
+  background-color: transparent !important;
+  color: rgb(255, 233, 220) !important;
+  border: 1px solid rgb(153, 69, 0) !important;
+
+  /* サイズの統一 */
+  width: 200px !important;
+  padding: 0.75rem 0 !important; /* 上下パディングのみ指定 */
+  text-align: center;
+
+  /* 余白の修正 */
+  margin: 0 !important; /* Flexboxのgapで制御するため0にする */
+  border-radius: 8px;
+  transition: 0.5s;
+}
+
+/* ボタンにマウスを乗せたときの変化 */
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-topics:hover {
+  background-color: #157a88 !important;
+  color: rgb(255, 233, 220) !important;
+  scale: 1.05; /* 少し大きくする程度が扱いやすいです */
+}
+/* ===================================================
+   【NEWSページ】デスクトップ版の高さバグ修正 & 画像拡大
+   =================================================== */
+
+/* 1. パソコン画面のとき、左側の広告のせいでページが短くなるバグを消す */
+@media (min-width: 800px) {
+  .news-contents .ad {
+    height: auto !important;
+    max-height: 700px;
+    overflow: visible !important;
+  }
+  .news-contents .post {
+    width: 55% !important; /* 記事の幅を少し広げて見やすく */
+  }
+}
+
+/* 2. サムネイル画像をスマホ・PCどちらもドカンと大きくする */
+.post-thumbnail.large {
+  width: 100% !important;
+  max-width: 1000px !important;
+  height: auto !important;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  display: block;
+}
+/* ===================================================
+   【Instagram】表示崩れ防止とスマホ対応の修正
+   =================================================== */
+.sns {
+  margin-top: 5rem;
+  padding: 0 1rem;
+}
+
+.sns-item {
+  display: flex !important; /* グリッドではなくフレックスで制御 */
+  flex-direction: column !important; /* スマホは縦並び */
+  align-items: center !important; /* 中央寄せ */
+  gap: 2rem !important;
+  width: 100% !important;
+}
+
+/* パソコンで見るときは2列にする */
+@media (min-width: 800px) {
+  .sns-item {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+  .instagram-media {
+    width: 45% !important; /* 2列に並べるための幅 */
+    margin: 1% !important;
+  }
+}
+
+/* 埋め込み投稿自体の強制リセット */
+.instagram-media {
+  max-width: 500px !important;
+  min-width: 300px !important;
+  width: 90% !important;
+}
+/* Instagramエリアのレイアウト設定 */
+.sns-item {
+  max-width: 1100px; /* 全体の幅を調整 */
+  margin: 0 auto;
+}
+
+.sns-item h3 {
+  text-align: left; /* タイトルを左揃え */
+  margin-bottom: 20px;
+}
+
+/* 2列にする設定（グリッドレイアウト） */
+.sns-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px; /* 投稿同士の隙間 */
+}
+
+/* 投稿ブロック（blockquote）のサイズ調整 */
+.sns-item blockquote {
+  width: calc(50% - 10px); /* 2列にするための計算式 */
+  margin: 0 !important; /* 既存のmarginをリセット */
+  min-width: 0 !important; /* スマホ時の崩れ防止 */
+}
+
+/* フワッと表示させるアニメーション（既存のクラスに合わせる） */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.fade-in-up.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Instagramエリアのレイアウト */
+.sns-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* 投稿同士の隙間 */
+  justify-content: space-between;
+}
+
+.sns-grid .instagram-media {
+  width: calc(50% - 10px) !important; /* 強制的に2列に */
+  margin: 0 !important;
+  max-width: none !important;
+}
+
+/* フワッと表示させる設定 */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.fade-in-up.is-active {
+  opacity: 1;
+  transform: translateY(0);
+}

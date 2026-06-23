@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tonny Fit - NEWS</title>
+    <meta name="description" content="ユーズド専門の洋服通販サイト" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--ファビコン-->
+    <link
+      rel="icon"
+      type="image/png"
+      href="images/31833963-60DB-429D-B823-72A00010497C.png"
+    />
+
+    <!--リセットCSS-->
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+
+    <!--googleフォント-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Philosopher&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--オリジナルCSS-->
+    <link rel="stylesheet" href="css/tonnyfit.css" />
+
+    <style>
+      /* ===================================================
+         ヘッダー（ロゴ・メニュー）の統一設定
+         =================================================== */
+      header {
+        position: fixed; /* ヘッダーを上に固定 */
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2000;
+        padding: 20px 0;
+        background: rgba(255, 242, 207, 0.5); /* 半透明の帯 */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* ロゴの余白調整 */
+      header .logo {
+        margin-left: 20px;
+      }
+
+      /* MENUボタンの配置とデザイン */
+      .btn-menu {
+        position: absolute;
+        top: 15px;
+        right: 20px; /* 右端からの距離 */
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        color: rgb(255, 233, 220);
+        padding: 0.5rem 1rem;
+        margin-bottom: 1rem;
+        z-index: 2000;
+        cursor: pointer;
+        font-family: "Philosopher", sans-serif;
+        font-weight: bold;
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+        background: transparent; /* 初期は透明 */
+        transition: 0.3s; /* ホバー時の滑らかな変化 */
+        border-radius: 10px;
+      }
+
+      /* ボタンのホバー設定 */
+      .btn-menu:hover {
+        background: #9b4600;
+        color: rgb(255, 233, 220);
+      }
+
+      /* ===================================================
+         【NEWSページ専用】縦長カバー画像の設定
+         =================================================== */
+      .sub-cover {
+        height: 700px !important;
+        background-size: cover !important;
+        background-position: center !important;
+        margin-bottom: 10rem !important;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 80px; /* ヘッダー分を下にずらす */
+      }
+      /* Informationの見出し用スタイル */
+      .heading-large {
+        /* 最小サイズ 1.5rem, 推奨サイズ 5vw, 最大サイズ 3rem とした場合 */
+        font-size: clamp(1.5rem, 5vw, 3rem);
+        text-align: center;
+      }
+      /* スマホ（画面幅480px以下）の時の調整 */
+      @media (max-width: 480px) {
+        /* ここに .post-title を追加する */
+        main .post-title {
+          font-size: 20px !important; /* 文字を小さくする */
+          line-height: 1.4; /* 行間を少し開ける */
+          padding: 0 10px; /* 左右に少し余白を作る */
+        }
+
+        h1,
+        h2 {
+          font-size: clamp(20px, 8vw, 32px);
+        }
+      }
+
+      /* ...以下略（既存の @media や .fade-in-up の設定はそのまま残してください）... */
+    </style>
+  </head>
+
+  <body>
+    <!-- 💡 ① ヘッダー（ロゴとメニュー）をカバー画像の外に完全に出して独立させました -->
+    <header>
+      <div class="logo">
+        <img
+          class="logo"
+          src="images/31833963-60DB-429D-B823-72A00010497C.png"
+          alt="TonnyFitホーム"
+        />
+      </div>
+      <nav>
+        <button class="btn-menu">MENU</button>
+        <ul class="nav-links font-english">
+          <li><a href="index.html">TOP</a></li>
+          <li><a href="news.html">NEWS</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+          <li><a href="onlineshop/online.html">ONLINE STORE</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- 💡 ② カバー画像は単体でフワッと動くように「News」の文字だけを包む形にしました -->
+    <div class="sub-cover cover-news fade-in-up">
+      <h2 class="page-title font-english">News</h2>
+    </div>
+
+    <main class="wrapper news-contents">
+      <!-- 記事エリア -->
+      <article class="post fade-in-up">
+        <h2 class="post-title">期間限定でショップ販売実施予定</h2>
+        <div class="post-info">
+          <ul class="post-cat">
+            <li><a href="#">ショップ紹介</a></li>
+            <li><a href="#">イベント</a></li>
+          </ul>
+
+          <time class="post-date" datetime="2026-06-01">2026年6月1日</time>
+        </div>
+
+        <img
+          class="post-thumbnail"
+          src="images/stocksnap-jeans-2597210.jpg"
+          alt="店内の様子"
+        />
+        <p>
+          これまでにない再生技術と加工技術を持つチームが一丸となって実店舗の設置に取り組んしてきました。
+          今回は期間限定という形になりましたが、自信を持って販売できる品揃えとなっております。
+        </p>
+        <p>
+          ご来店の際は、ぜひお気軽にご試着ください。
+          また、デニムを履くうえで必要になってくる、洗剤や糊やブラシなどのオリジナル製品もご用意しておりますので、ぜひご覧ください。
+        </p>
+
+        <p>
+          ご来店していただいた方限定でオリジナルステッカーを配布させていただく予定です。
+          ステッカー裏にあるURLより、アンケートにお答えいただけると幸いです。
+          皆様の貴重なご意見をいただき、より利用しやすい形へと進化していきたいと思います。
+        </p>
+        <p>
+          日時：6月1日～6月30日 11時から21時まで<br />
+          場所：表参道ヒルズ 3F
+        </p>
+        <p>
+          ご来店は完全予約制とさせていただきます。また、予約人数が定員に達した場合、恐れ入りますがご予約を打ち切らせていただく予定です。
+          ぜひお早めにお申し込みください。
+          店舗でお会いできることを心から楽しみにしております。
+        </p>
+      </article>
+
+      <!-- サイドバーエリア -->
+      <aside class="sidebar fade-in-up">
+        <h3 class="heading-midium font-english">Category</h3>
+        <ul class="side-menu">
+          <li><a href="#">お店の紹介</a></li>
+          <li><a href="#">期間限定メニュー</a></li>
+          <li><a href="#">イベント</a></li>
+          <li><a href="#">お客様との会話</a></li>
+        </ul>
+
+        <h3 class="heading-midium font-english">Archives</h3>
+        <ul class="side-menu">
+          <li><a href="#">2023年</a></li>
+          <li><a href="#">2022年</a></li>
+          <li><a href="#">2021年</a></li>
+          <li><a href="#">2020年</a></li>
+        </ul>
+      </aside>
+
+      <!-- 広告エリア -->
+      <aside class="ad fade-in-up">
+        <h4 class="ad-title font-english">Original</h4>
+        <img
+          src="images/jackmac34-soap-673193_1920.jpg"
+          alt="オリジナル製品発売"
+        />
+      </aside>
+    </main>
+
+    <!-- フッターエリア -->
+    <footer class="page-footer fade-in-up">
+      <div class="info-container">
+        <h3 class="heading-large font-english">Information</h3>
+
+        <table class="info">
+          <tr>
+            <th>住所</th>
+            <td>東京都渋谷区表参道0-0 ○○○</td>
+          </tr>
+          <tr>
+            <th>電話</th>
+            <td>03-1111-XXXX</td>
+          </tr>
+          <tr>
+            <th>営業時間</th>
+            <td>24h</td>
+          </tr>
+        </table>
+      </div>
+      <div class="copyright">
+        <small>&copy; 2026 Tonny Fit</small>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // メニュー開閉
+        const btn = document.querySelector(".btn-menu");
+        const nav = document.querySelector(".nav-links");
+
+        if (btn && nav) {
+          btn.addEventListener("click", () => {
+            nav.classList.toggle("open-menu");
+            if (btn.innerHTML === "MENU") {
+              btn.innerHTML = "CLOSE";
+            } else {
+              btn.innerHTML = "MENU";
+            }
+          });
+        }
+
+        // スクロールでフワッと（複数要素を監視）
+        const fadeInUpTargets = document.querySelectorAll(".fade-in-up");
+
+        if (fadeInUpTargets.length > 0) {
+          const observerOptions = {
+            root: null,
+            rootMargin: "-10% 0px",
+            threshold: 0.05,
+          };
+
+          const observerCallback = (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-active");
+              } else {
+                entry.target.classList.remove("is-active");
+              }
+            });
+          };
+
+          const observer = new IntersectionObserver(
+            observerCallback,
+            observerOptions,
+          );
+          fadeInUpTargets.forEach((target) => observer.observe(target));
+        }
+      });
+    </script>
+  </body>
+</html>

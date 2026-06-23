@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>スタイリング | TonnyFit</title>
+    <!-- 💡 共通のCSSファイルを読み込み（土台・性別タブ・ドット付きメニューはここで一発適用） -->
+    <link rel="stylesheet" href="../css/item.css" />
+
+    <style>
+      /* ==========================================
+         スタイリングページ専用のスタイル定義（グリッドと配置のみ）
+         ========================================== */
+      /* 1. コンテナのパディングを調整してさらに左へ */
+      /* 1. コンテナの左余白を最小限に */
+      .styling-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        /* 右は20px、左は0pxにして左端にぴったり寄せます */
+        padding: 40px 20px 40px 0px;
+      }
+      /* 2. レイアウト全体：サイドメニューとメインを柔軟に並べる */
+      .content-layout {
+        display: flex;
+        gap: 3vw; /* 隙間も画面幅に合わせて変化 */
+        justify-content: flex-start;
+      }
+
+      /* 2. サイドメニュー自体の左余白を強制リセット */
+      .side-menu {
+        width: 220px;
+        flex-shrink: 0;
+        margin-left: 0 !important; /* 他の余白指定を無視して左端へ */
+        padding-left: 0 !important;
+      }
+
+      /* 右側：メインコンテンツが残りのスペースを自動で埋める */
+      .main-content {
+        flex: 1; /* 柔軟に伸縮 */
+      }
+
+      .page-title,
+      .tab-container {
+        text-align: left;
+        justify-content: flex-start;
+      }
+
+      /* 2カラムレイアウトの箱 */
+      .content-layout {
+        display: flex;
+        gap: 40px;
+      }
+
+      /* 左側：サイドメニュー（幅の固定のみ） */
+
+      .menu-group {
+        margin-bottom: 30px;
+      }
+      .menu-group h3 {
+        /* font-size: 15px; を削除して以下に変更 */
+        font-size: clamp(15px, 1.1vw, 15px);
+        font-weight: bold;
+        margin-bottom: 12px;
+        padding-bottom: 6px;
+        border-bottom: 1px dashed rgba(255, 233, 220, 0.2);
+        color: rgb(255, 233, 220);
+      }
+
+      /* メニュー内のリンクの左余白もリセット */
+      .menu-list li a {
+        padding-left: 0;
+      }
+      /* 右側：スタイリンググリッド */
+      /* 3. メニューリストの左余白も完全にリセット */
+      .menu-list {
+        list-style: none;
+        margin-left: 0;
+        padding-left: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .styling-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+      @media (min-width: 768px) {
+        .styling-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      /* スナップ写真のカードデザイン */
+      .styling-card {
+        background-color: rgba(255, 233, 220, 0.05);
+        display: flex;
+        flex-direction: column;
+        /* 影と動きの両方をスムーズに設定 */
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 233, 220, 0.1);
+        text-decoration: none; /* aタグの標準装飾を消す */
+        cursor: pointer;
+      }
+      .styling-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        border-color: rgb(255, 123, 0);
+      }
+      .styling-image-box {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        background-color: #333;
+        overflow: hidden;
+      }
+      .styling-image-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .styling-info {
+        padding: 12px;
+      }
+      .staff-name {
+        font-size: 13px;
+        font-weight: bold;
+        color: rgb(255, 233, 220);
+        margin-bottom: 2px;
+      }
+      .staff-height {
+        font-size: 11px;
+        color: rgba(255, 233, 220, 0.6);
+        margin-bottom: 6px;
+      }
+      .shop-name {
+        font-size: 11px;
+        color: rgb(0, 146, 172);
+        font-weight: bold;
+      }
+
+      /* スマホ表示の調整 */
+      /* スマホ表示の調整（ここだけ切り替え） */
+      @media (max-width: 768px) {
+        .styling-container {
+          padding: 20px 15px;
+        }
+        .content-layout {
+          flex-direction: column;
+        }
+        .side-menu {
+          width: 100%;
+        }
+      }
+      /* フワッと表示用のスタイル */
+      .scroll-fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.8s ease-out,
+          transform 0.8s ease-out;
+        /* 念のため追加：アニメーションさせる要素にはこれを入れると安定します */
+        will-change: opacity, transform;
+      }
+
+      /* 表示された時のクラス */
+      .scroll-fade-in.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* 追加：特集セクションのスタイル */
+      .feature-section {
+        margin: 60px 0;
+      }
+      .feature-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+        color: #fff;
+      }
+      .feature-banner {
+        width: 100%;
+        height: 500px;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+          url("../images/78a9795290b6eb954cb4142fe2b58b2b.jpg"); /* ここに画像パスを入れてね */
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+      }
+      .feature-btn {
+        margin-top: 15px;
+        padding: 10px 30px;
+        background: transparent;
+        border: 1px solid white;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .feature-btn:hover {
+        background: white;
+        color: #333;
+      }
+      .store-banner-wrapper {
+        width: 100%; /* 親要素(main-content)の幅いっぱいに */
+        margin: 60px 0 0 0; /* 上側に余白、左右は親に合わせるため0 */
+        text-align: center;
+      }
+
+      .store-banner {
+        display: block;
+        width: 100%; /* これにより親要素の幅（スタイリンググリッドの横幅）に完璧に合わさります */
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+      .store-banner:hover {
+        transform: scale(1.01); /* 控えめなホバー効果 */
+      }
+      /* ヘッダー全体を画面幅に収める */
+      header {
+        width: 100%;
+        /* overflow: hidden; はみ出しをカット */
+      }
+
+      .header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; /* ロゴとメニューを左右端に配置 */
+        align-items: center;
+        padding: 10px; /* 余白を少し減らす */
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .header-container .logo img {
+        max-width: 80px; /* ロゴを少し小さくして余裕を作る */
+        height: auto;
+        display: block;
+      }
+      /* ナビゲーションを右寄せで横並びに */
+      .nav-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end; /* ナビを右寄せに固定 */
+        gap: 5px; /* 隙間を狭く */
+        flex-shrink: 1; /* 画面が狭いときは縮む */
+        min-width: 0; /* これが重要！flexアイテムがはみ出さないようにする */
+      }
+
+      .nav-links a {
+        /* 最小6pxまで小さくなるように設定 */
+        font-size: clamp(6px, 2.2vw, 12px);
+        white-space: nowrap;
+        color: rgb(255, 233, 220);
+        text-decoration: none;
+        padding: 0 2px;
+        line-height: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ヘッダー（共通CSSから自動適用） -->
+    <header>
+      <div class="header-container">
+        <a href="online.html" class="logo">
+          <img
+            class="logo"
+            src="../images/31833963-60DB-429D-B823-72A00010497C.png"
+            alt="TonnyFitホーム"
+          />
+        </a>
+        <nav class="nav-links">
+          <a href="online.html">オンライントップ</a>
+          <a href="category.html">アイテム</a>
+          <a href="styling.html" style="color: rgb(0, 182, 214) !important"
+            >スタイリング</a
+          >
+          <a href="label.html">レーベル</a>
+          <a href="../index.html">公式サイト</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- 追加：特集バナーセクション -->
+    <section class="feature-section scroll-fade-in">
+      <h3 class="feature-title">今週のピックアップ</h3>
+      <div class="feature-banner">
+        <div class="feature-text">
+          <p>SEASON LOOKBOOK</p>
+          <h4>Spring Collection 2026</h4>
+        </div>
+      </div>
+    </section>
+    <!-- メインコンテンツ -->
+    <div class="styling-container">
+      <h2 class="page-title scroll-fade-in">スタイリング</h2>
+
+      <!-- 性別タブ（共通復活版CSSが完璧にサポート！） -->
+      <div class="tab-container scroll-fade-in">
+        <span class="tab-item active">ALL</span>
+        <span class="tab-item">MEN</span>
+        <span class="tab-item">WOMEN</span>
+        <span class="tab-item">KIDS</span>
+      </div>
+
+      <!-- 左右2カラムのレイアウト開始 -->
+      <div class="content-layout">
+        <!-- 左側：BEAMS風 箇条書き選択サイドメニュー -->
+        <aside class="side-menu scroll-fade-in">
+          <div class="menu-group">
+            <h3>トップス</h3>
+            <!-- 💡 共通のドット＆光るエフェクトを効かせるため、クラス名に「sub-category-grid」を借用しています -->
+            <ul
+              class="menu-list sub-category-grid"
+              style="display: flex; flex-direction: column"
+            >
+              <li><a href="#" class="highlight">すべて見る</a></li>
+              <li><a href="#">Tシャツ・カットソー</a></li>
+              <li><a href="#">シャツ・ブラウス</a></li>
+              <li><a href="#">ニット・セーター</a></li>
+              <li><a href="#">パーカー</a></li>
+            </ul>
+          </div>
+          <div class="menu-group">
+            <h3>ジャケット・アウター</h3>
+            <ul
+              class="menu-list sub-category-grid"
+              style="display: flex; flex-direction: column"
+            >
+              <li><a href="#">ブルゾン</a></li>
+              <li><a href="#">テーラードジャケット</a></li>
+              <li><a href="#">ダウンジャケット</a></li>
+            </ul>
+          </div>
+          <div class="menu-group">
+            <h3>パンツ</h3>
+            <ul
+              class="menu-list sub-category-grid"
+              style="display: flex; flex-direction: column"
+            >
+              <li><a href="#">カジュアルパンツ</a></li>
+              <li><a href="#">デニムパンツ</a></li>
+              <li><a href="#">スラックス</a></li>
+            </ul>
+          </div>
+
+          <div class="menu-group">
+            <h3>スカート・ワンピース</h3>
+            <ul
+              class="menu-list sub-category-grid"
+              style="display: flex; flex-direction: column"
+            >
+              <li><a href="#">ロングスカート</a></li>
+              <li><a href="#">ミニスカート</a></li>
+              <li><a href="#">ワンピース</a></li>
+            </ul>
+          </div>
+
+          <div class="menu-group">
+            <h3>セットアップ</h3>
+            <ul
+              class="menu-list sub-category-grid"
+              style="display: flex; flex-direction: column"
+            >
+              <li><a href="#">ジャケットセットアップ</a></li>
+              <li><a href="#">カジュアルセットアップ</a></li>
+            </ul>
+          </div>
+
+          <div class="menu-group">
+            <h3>アクセサリー・小物</h3>
+            <ul
+              class="menu-list sub-category-grid"
+              style="display: flex; flex-direction: column"
+            >
+              <li><a href="#">バッグ</a></li>
+              <li><a href="#">シューズ</a></li>
+              <li><a href="#">帽子</a></li>
+              <li><a href="#">ベルト</a></li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- 右側：スナップ写真一覧 -->
+        <main class="main-content">
+          <div class="styling-grid">
+            <!-- カード1 -->
+            <a href="#" class="styling-card scroll-fade-in">
+              <div class="styling-image-box">
+                <img
+                  src="../images/7394c4ccf2e1499df6699dbb7e5f94a7.jpg"
+                  alt="スタイリング1"
+                />
+              </div>
+              <div class="styling-info">
+                <p class="staff-name">Sam</p>
+                <p class="staff-height">171cm</p>
+                <p class="shop-name">オンラインストア</p>
+              </div>
+            </a>
+
+            <!-- カード2 -->
+            <a href="#" class="styling-card scroll-fade-in">
+              <div class="styling-image-box">
+                <img
+                  src="../images/23f1def886ad643c2c204ad3e2ae9638.jpg"
+                  alt="スタイリング2"
+                />
+              </div>
+              <div class="styling-info">
+                <p class="staff-name">Kaya</p>
+                <p class="staff-height">154cm</p>
+                <p class="shop-name">TonnyFit 表参道</p>
+              </div>
+            </a>
+
+            <!-- カード3 -->
+            <a href="#" class="styling-card scroll-fade-in">
+              <div class="styling-image-box">
+                <img
+                  src="../images/O1CN01c9syZG2K3yRcYOKTo__2793749502.webp"
+                  alt="スタイリング3"
+                />
+              </div>
+              <div class="styling-info">
+                <p class="staff-name">Bryan</p>
+                <p class="staff-height">180cm</p>
+                <p class="shop-name">オンラインショップ</p>
+              </div>
+            </a>
+
+            <!-- カード4 -->
+            <a href="#" class="styling-card scroll-fade-in">
+              <div class="styling-image-box">
+                <img
+                  src="../images/94f77373b83cf2d0a221d2ef3afc983c.jpg"
+                  alt="スタイリング4"
+                />
+              </div>
+              <div class="styling-info">
+                <p class="staff-name">Ryoko</p>
+                <p class="staff-height">152cm</p>
+                <p class="shop-name">TonnyFit 表参道</p>
+              </div>
+            </a>
+
+            <!-- カード5 -->
+            <a href="#" class="styling-card scroll-fade-in">
+              <div class="styling-image-box">
+                <img
+                  src="../images/19459c5cc15b237ceec2f2423d84359f.jpg"
+                  alt="スタイリング5"
+                />
+              </div>
+              <div class="styling-info">
+                <p class="staff-name">Yuma</p>
+                <p class="staff-height">175cm</p>
+                <p class="shop-name">TonnyFit 表参道</p>
+              </div>
+            </a>
+            <!-- カード6 -->
+            <a href="#" class="styling-card scroll-fade-in">
+              <div class="styling-image-box">
+                <img
+                  src="../images/0e3e173a370a5e841f7a58057c031f04.jpg"
+                  alt="スタイリング6"
+                />
+              </div>
+              <div class="styling-info">
+                <p class="staff-name">Akira</p>
+                <p class="staff-height">168cm</p>
+                <p class="shop-name">TonnyFit 表参道</p>
+              </div>
+            </a>
+
+            <!-- カード7 -->
+            <a href="#" class="styling-card scroll-fade-in">
+              <div class="styling-image-box">
+                <img
+                  src="../images/e834134d18a4ad0d8bb39d3eb968347f.jpg"
+                  alt="スタイリング7"
+                />
+              </div>
+              <div class="styling-info">
+                <p class="staff-name">Minji</p>
+                <p class="staff-height">163cm</p>
+                <p class="shop-name">オンラインショップ</p>
+              </div>
+            </a>
+
+            <!-- カード8 -->
+            <a href="#" class="styling-card scroll-fade-in">
+              <div class="styling-image-box">
+                <img
+                  src="../images/O1CN01ppGon422u2RcJwDD4__2367667179.jpg"
+                  alt="スタイリング8"
+                />
+              </div>
+              <div class="styling-info">
+                <p class="staff-name">Jeff</p>
+                <p class="staff-height">182cm</p>
+                <p class="shop-name">オンラインショップ</p>
+              </div>
+            </a>
+
+            <!-- カード9 -->
+            <a href="#" class="styling-card scroll-fade-in">
+              <div class="styling-image-box">
+                <img
+                  src="../images/O1CN01Z8AcxJ2K3yRcwZRiQ__2793749502.webp"
+                  alt="スタイリング9"
+                />
+              </div>
+              <div class="styling-info">
+                <p class="staff-name">ai</p>
+                <p class="staff-height">166cm</p>
+                <p class="shop-name">オンラインショップ</p>
+              </div>
+            </a>
+          </div>
+
+          <!-- ↓「今週のピックアップ」を削除して、ここにバナーを配置 -->
+          <div class="store-banner-wrapper scroll-fade-in">
+            <a href="（店舗詳細ページのURL）">
+              <img
+                src="../images/banner3.jpg"
+                alt="TonnyFit 表参道ヒルズ店 店舗情報"
+                class="store-banner"
+              />
+            </a>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- フッター（共通CSSから自動適用） -->
+    <footer>
+      <p>© TonnyFit Co., Ltd. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+              } else {
+                // 画面から出たらクラスを外すことで、再度スクロールした時にアニメーションが再発動する
+                entry.target.classList.remove("is-visible");
+              }
+            });
+          },
+          { threshold: 0.1 },
+        );
+
+        document.querySelectorAll(".scroll-fade-in").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+
+      // タブ切り替え処理
+      document.querySelectorAll(".tab-item").forEach((item) => {
+        item.addEventListener("click", function () {
+          document.querySelectorAll(".tab-item").forEach((tab) => {
+            tab.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>

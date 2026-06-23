@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TonnyFit | 公式オンラインショップ</title>
+    <!-- 💡 共通のCSSファイルを読み込み（これでヘッダー・フッター・背景が自動適用！） -->
+    <link rel="stylesheet" href="../css/item.css" />
+
+    <style>
+      /* ==========================================
+         トップページ専用のスタイル定義（グリッドと装飾のみ）
+         ========================================== */
+      /* 1. メインビジュアル（カルーセルエリア） */
+      .hero-carousel {
+        width: 100%;
+        background-color: rgb(0, 106, 124);
+        color: rgb(255, 233, 220);
+        padding: 60px 20px;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .hero-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .hero-title {
+        font-size: 32px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
+      }
+
+      /* 2. セクションヘッダー */
+      .top-section {
+        max-width: 1200px;
+        margin: 0 auto 60px auto;
+        padding: 0 20px;
+      }
+      .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        border-bottom: 2px solid rgb(255, 233, 220);
+        padding-bottom: 12px;
+        margin-bottom: 30px;
+      }
+      .section-title-box {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+      }
+      .section-title {
+        font-size: 26px;
+        font-family: "Impact", "Arial Black", sans-serif;
+        font-weight: 900;
+        letter-spacing: 2px;
+        line-height: 1;
+        color: rgb(255, 233, 220);
+      }
+      .section-subtitle {
+        font-size: 12px;
+        color: rgba(255, 233, 220, 0.7);
+        font-weight: bold;
+      }
+      .view-more {
+        font-size: 12px;
+        font-weight: bold;
+        color: rgb(255, 233, 220);
+        display: flex;
+        align-items: center;
+      }
+      .view-more:hover {
+        color: rgb(0, 146, 172);
+      }
+      .view-more::after {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-top: 2px solid currentColor;
+        border-right: 2px solid currentColor;
+        transform: rotate(45deg);
+        margin-left: 6px;
+        margin-bottom: 2px;
+      }
+
+      /* 各種テキストカラーの調整 */
+      .brand-name,
+      .price {
+        color: rgb(255, 233, 220);
+      }
+      .product-name,
+      .feature-text,
+      .staff-info strong {
+        color: rgba(255, 233, 220, 0.9);
+      }
+      .feature-date,
+      .staff-info span {
+        color: rgba(255, 233, 220, 0.6) !important;
+      }
+
+      /* 3. 特集用の変則グリッド */
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 20px;
+      }
+      .feature-card {
+        display: flex;
+        flex-direction: column;
+      }
+      .feature-image {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background-color: rgba(255, 233, 220, 0.1);
+        margin-bottom: 10px;
+        object-fit: cover;
+      }
+      .feature-date {
+        font-size: 11px;
+        margin-bottom: 5px;
+      }
+
+      /* 4. スタイリング用の4列グリッド */
+      .styling-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 15px;
+      }
+      .styling-card {
+        position: relative;
+      }
+      .styling-image {
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        background-color: rgba(255, 233, 220, 0.1);
+        object-fit: cover;
+      }
+      .staff-info {
+        margin-top: 8px;
+        font-size: 12px;
+      }
+
+      /* スマホ表示の時の調整 */
+      @media (max-width: 768px) {
+        .hero-title {
+          font-size: 24px;
+        }
+        .section-title {
+          font-size: 22px;
+        }
+        .features-grid {
+          grid-template-columns: repeat(1, 1fr);
+        }
+        .styling-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* アニメーション前の状態（ここが原因で透明になっています） */
+      .scroll-fade-in {
+        opacity: 0;
+        transform: translateY(15px);
+        transition:
+          opacity 0.8s ease-out,
+          transform 0.8s ease-out;
+      }
+
+      /* ★重要：ここが必要です！「is-visible」がついたら透明度を1にする */
+      .scroll-fade-in.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      html,
+      body {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .store-banner-wrapper {
+        width: 100%;
+        max-width: 1200px; /* オンライントップのレイアウト幅に合わせてください */
+        margin: 60px auto;
+        padding: 0 20px;
+        text-align: center;
+      }
+
+      .store-banner {
+        display: block;
+        width: 100%;
+        height: 100%; /* スタイリングページと高さを統一 */
+        object-fit: cover;
+        object-position: top;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+
+      .store-banner:hover {
+        transform: scale(1.01);
+      }
+
+      .scroll-fade-in {
+        opacity: 0;
+        transform: translateY(15px);
+        transition:
+          opacity 0.8s ease-out,
+          transform 0.8s ease-out;
+      }
+      .scroll-fade-in.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* .nav-links a {
+       
+        font-size: clamp(12px, 1.5vw, 16px);
+
+        
+        padding: 0 10px;
+        white-space: nowrap; 
+      } */
+
+      /* スマホ版でのカードレイアウト調整 */
+      .product-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
+        gap: 15px;
+      }
+
+      @media (max-width: 480px) {
+        .product-grid {
+          grid-template-columns: 1fr; /* 画面が小さい時は1列にする */
+        }
+      }
+      @media (max-width: 768px) {
+        .hero-carousel {
+          padding: 40px 15px; /* スマホ用に余白を少し小さく */
+        }
+      }
+      /* 動画のコンテナ */
+      @media (max-width: 768px) {
+        .video-container {
+          /* ※HTML側のdivにこのクラス名をつけてください */
+          width: 100% !important; /* スマホでは幅いっぱいに */
+          margin: 40px auto !important;
+        }
+      }
+      @media (max-width: 480px) {
+        .styling-grid {
+          grid-template-columns: 1fr; /* スマホの縦持ちなら1列がおすすめ */
+        }
+      }
+      /* ★最重要：画面幅を超えて横に伸びるのを防ぐ設定 */
+      html,
+      body {
+        overflow-x: hidden;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* 動画エリアのスマホ用調整 */
+      /* HTML側のdivに「video-container」クラスを追加してください */
+      .video-container {
+        width: 90% !important; /* 80%だと小さすぎるので90%に */
+        max-width: 800px;
+        margin: 40px auto !important; /* 100pxだと余白が大きすぎます */
+      }
+
+      /* ヘッダー全体を画面幅に収める */
+      header {
+        width: 100%;
+        /* overflow: hidden; はみ出しをカット */
+      }
+
+      .header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; /* ロゴとメニューを左右端に配置 */
+        align-items: center;
+        padding: 10px; /* 余白を少し減らす */
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .header-container .logo img {
+        max-width: 80px; /* ロゴを少し小さくして余裕を作る */
+        height: auto;
+        display: block;
+      }
+      /* ナビゲーションを右寄せで横並びに */
+      .nav-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end; /* ナビを右寄せに固定 */
+        gap: 5px; /* 隙間を狭く */
+        flex-shrink: 1; /* 画面が狭いときは縮む */
+        min-width: 0; /* これが重要！flexアイテムがはみ出さないようにする */
+      }
+
+      .nav-links a {
+        /* 最小6pxまで小さくなるように設定 */
+        font-size: clamp(6px, 2.2vw, 12px);
+        white-space: nowrap;
+        color: rgb(255, 233, 220);
+        text-decoration: none;
+        padding: 0 2px;
+        line-height: 1;
+      }
+
+      .hero-title {
+        /* 20px ～ 32px の間で、画面幅に合わせて自動調整 */
+        font-size: clamp(20px, 8vw, 32px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 共通ヘッダー -->
+    <header>
+      <div class="header-container">
+        <a href="online.html" class="logo">
+          <img
+            class="logo"
+            src="../images/31833963-60DB-429D-B823-72A00010497C.png"
+            alt="TonnyFitホーム"
+          />
+        </a>
+        <nav class="nav-links">
+          <a href="online.html" style="color: rgb(0, 182, 214) !important"
+            >オンライントップ</a
+          >
+          <a href="category.html">アイテム</a>
+          <a href="styling.html">スタイリング</a>
+          <a href="label.html">レーベル</a>
+          <a href="../index.html">公式サイト</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- 1. メインビジュアル -->
+    <section class="hero-carousel">
+      <div class="hero-inner">
+        <p
+          style="
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: rgb(255, 233, 220);
+          "
+        >
+          Authentic Vintage Denim & Curated Pieces
+        </p>
+        <h1
+          class="hero-title"
+          style="
+            color: rgb(255, 233, 220);
+            font-family: &quot;Impact&quot;, sans-serif;
+          "
+        >
+          FIND YOUR OWN STYLE
+        </h1>
+        <p style="font-size: 13px; opacity: 0.9; color: rgb(255, 233, 220)">
+          世界中から集めた1点物のヴィンテージデニム、アクセサリー、小物が揃うオンラインストア
+        </p>
+      </div>
+    </section>
+
+    <!-- 動画エリア -->
+    <div style="width: 80%; max-width: 800px; margin: 100px auto 100px auto">
+      <video
+        id="tonnyVideo"
+        autoplay
+        muted
+        loop
+        playsinline
+        width="100%"
+        style="display: block; border-radius: 8px"
+      >
+        <source src="../images/tonnyfitstore_pr .MP4" type="video/mp4" />
+      </video>
+
+      <!-- 音声オン/オフ切り替えボタン（アイコン風） -->
+      <div style="text-align: right; margin-top: 10px">
+        <button
+          id="soundToggleBtn"
+          onclick="toggleSound()"
+          style="
+            margin: 0px 5px;
+            cursor: pointer;
+            color: rgb(255, 244, 237);
+            /* border: 1px solid rgb(255, 244, 237); */
+            border-radius: 20px;
+            font-weight: lighter;
+            font-size: 15px;
+            transition: all 0.3s;
+          "
+        >
+          🔇
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function toggleSound() {
+        var video = document.getElementById("tonnyVideo");
+        var btn = document.getElementById("soundToggleBtn");
+
+        if (video.muted) {
+          video.muted = false;
+          btn.innerHTML = "🔊";
+          btn.style.backgroundColor = "#e0f7fa"; // オン時は色を変える
+        } else {
+          video.muted = true;
+          btn.innerHTML = "🔇";
+          btn.style.backgroundColor = "#f4f4f4"; // オフ時は戻す
+        }
+      }
+    </script>
+    <script>
+      function toggleSound() {
+        var video = document.getElementById("tonnyVideo");
+        var btn = event.target;
+
+        if (video.muted) {
+          video.muted = false; // 音を出す
+          btn.innerText = "🔇";
+        } else {
+          video.muted = true; // 音を消す
+          btn.innerText = "🔊";
+        }
+      }
+    </script>
+
+    <script>
+      function toggleSound() {
+        var video = document.getElementById("tonnyVideo");
+        var btn = event.target;
+
+        if (video.muted) {
+          video.muted = false; // 音を出す
+          btn.innerText = "mute";
+        } else {
+          video.muted = true; // 音を消す
+          btn.innerText = "unmute";
+        }
+      }
+    </script>
+
+    <!-- 2. ピックアップ / 新着アイテム -->
+    <section class="top-section scroll-fade-in">
+      <div class="section-header">
+        <div class="section-title-box">
+          <h2 class="section-title">NEW ARRIVAL</h2>
+          <span class="section-subtitle">新着アイテム</span>
+        </div>
+        <a href="category.html" class="view-more">MORE</a>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card">
+          <span class="badge new" style="background: rgb(0, 146, 172)"
+            >NEW</span
+          >
+          <div
+            class="product-image"
+            style="
+              background-image: url(&quot;https://via.placeholder.com/300x400?text=New+1&quot;);
+              background-size: cover;
+            "
+          ></div>
+          <div class="brand-name">TonnyFit Select</div>
+          <div class="product-name">
+            90s ヴィンテージ リラックスフィット デニム
+          </div>
+          <div class="price">¥28,800</div>
+        </div>
+        <div class="product-card">
+          <span class="badge new" style="background: rgb(0, 146, 172)"
+            >NEW</span
+          >
+          <div
+            class="product-image"
+            style="
+              background-image: url(&quot;https://via.placeholder.com/300x400?text=New+2&quot;);
+              background-size: cover;
+            "
+          ></div>
+          <div class="brand-name">Vintage</div>
+          <div class="product-name">ネイティブアメリカン シルバーバングル</div>
+          <div class="price">¥10,400</div>
+        </div>
+        <div class="product-card">
+          <div
+            class="product-image"
+            style="
+              background-image: url(&quot;https://via.placeholder.com/300x400?text=New+3&quot;);
+              background-size: cover;
+            "
+          ></div>
+          <div class="brand-name">Used</div>
+          <div class="product-name">フェードブラック バギーパンツ</div>
+          <div class="price">¥17,700</div>
+        </div>
+        <div class="product-card">
+          <div
+            class="product-image"
+            style="
+              background-image: url(&quot;https://via.placeholder.com/300x400?text=New+4&quot;);
+              background-size: cover;
+            "
+          ></div>
+          <div class="brand-name">TonnyFit Select</div>
+          <div class="product-name">クラシック ワークデニムベスト</div>
+          <div class="price">¥16,940</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. 特集（FEATURES） -->
+    <section class="top-section scroll-fade-in">
+      <div class="section-header">
+        <div class="section-title-box">
+          <h2 class="section-title">FEATURES</h2>
+          <span class="section-subtitle">特集</span>
+        </div>
+        <a href="#" class="view-more">MORE</a>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div
+            class="feature-image"
+            style="
+              background-image: url(../images/GX-Y01-006_1-5.avif);
+              background-size: cover;
+            "
+          ></div>
+          <span class="feature-date">2026.06.11</span>
+          <p class="feature-text">
+            ディレクターが語る、今着たいインディゴデニムの魅力と付き合い方
+          </p>
+        </div>
+        <div class="feature-card">
+          <div
+            class="feature-image"
+            style="
+              background-image: url(../images/221117_ur_vintagejewelry_news.jpg);
+              background-size: cover;
+              background-position: center;
+            "
+          ></div>
+          <span class="feature-date">2026.06.05</span>
+          <p class="feature-text">
+            夏のシンプルな着こなしを格上げするヴィンテージ小物の選び方
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div
+            class="feature-image"
+            style="
+              background-image: url(../images/11-1-1.jpg);
+              background-size: cover;
+              background-position: center;
+            "
+          ></div>
+          <span class="feature-date">2026.06.01</span>
+          <p class="feature-text">
+            年代でこんなに違う？90sリラックスフィットとクラシックワークの『歴史とディテール』
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. スタイリング（STYLING） -->
+    <section class="top-section scroll-fade-in">
+      <div class="section-header">
+        <div class="section-title-box">
+          <h2 class="section-title">STYLING</h2>
+          <span class="section-subtitle">スタイリング</span>
+        </div>
+        <a href="styling.html" class="view-more">MORE</a>
+      </div>
+
+      <div class="styling-grid">
+        <!-- 1人目：Takuya -->
+        <div class="styling-card">
+          <div
+            class="styling-image"
+            style="
+              background-image: url(../images/19459c5cc15b237ceec2f2423d84359f.jpg);
+              background-size: cover;
+            "
+          ></div>
+          <p class="staff-info">
+            <strong>Takuya</strong><br /><span>TonnyFit 表参道</span>
+          </p>
+        </div>
+
+        <!-- 2人目：April -->
+        <div class="styling-card">
+          <div
+            class="styling-image"
+            style="
+              background-image: url(../images/5810cc3a15cbf8d18a09d610f1d45d55.jpg);
+              background-size: cover;
+            "
+          ></div>
+          <p class="staff-info">
+            <strong>Mei</strong><br /><span>TonnyFit 表参道</span>
+          </p>
+        </div>
+
+        <!-- 3人目：Miku -->
+        <div class="styling-card">
+          <div
+            class="styling-image"
+            style="
+              background-image: url(../images/2091ba13a1e55e1b36b4e8381c353899.jpg);
+              background-size: cover;
+            "
+          ></div>
+          <p class="staff-info">
+            <strong>Miku</strong><br /><span>TonnyFit 表参道</span>
+          </p>
+        </div>
+
+        <!-- 4人目：Rico -->
+        <div class="styling-card">
+          <div
+            class="styling-image"
+            style="
+              background-image: url(../images/0fd02d78e0d00a75a6175a59ce4cce6b.jpg);
+              background-size: cover;
+            "
+          ></div>
+          <p class="staff-info">
+            <strong>Rico</strong><br /><span>TonnyFit 表参道</span>
+          </p>
+        </div>
+
+        <!-- 5人目：Hearin -->
+        <div class="styling-card">
+          <div
+            class="styling-image"
+            style="
+              background-image: url(../images/O1CN01jOHK4A1KUX4lYiu5O__648361167.webp);
+              background-size: cover;
+            "
+          ></div>
+          <p class="staff-info">
+            <strong>Hearin</strong><br /><span>オンラインショップ</span>
+          </p>
+        </div>
+
+        <!-- 6人目：Hyungjun -->
+        <!-- <div class="styling-card">
+          <div
+            class="styling-image"
+            style="
+              background-image: url(../images/O1CN01sb8oqZ1bcBH1I3oqU__692123485.webp);
+              background-size: cover;
+            "
+          ></div>
+          <p class="staff-info">
+            <strong>Hyungjun</strong><br /><span>オンラインショップ</span>
+          </p>
+        </div> -->
+
+        <!-- 7人目：Jessica -->
+        <!-- <div class="styling-card">
+          <div
+            class="styling-image"
+            style="
+              background-image: url(../images/Levis-2024-look-1-.webp);
+              background-size: cover;
+            "
+          ></div>
+          <p class="staff-info">
+            <strong>Jessica</strong><br /><span>オンラインショップ</span>
+          </p>
+        </div> -->
+
+        <!-- 8人目：Lyra -->
+        <!-- <div class="styling-card">
+          <div
+            class="styling-image"
+            style="
+              background-image: url(../images/O1CN014n5pMc1bcBGyEGPbO__692123485.webp);
+              background-size: cover;
+            "
+          ></div>
+          <p class="staff-info">
+            <strong>Lyra</strong><br /><span>オンラインショップ</span>
+          </p>
+        </div> -->
+      </div>
+    </section>
+
+    <!-- 店舗案内バナーエリア -->
+    <section class="store-banner-wrapper scroll-fade-in">
+      <a href="（店舗詳細ページのURL）">
+        <img
+          src="../images/banner3.jpg"
+          alt="TonnyFit 表参道ヒルズ店 店舗情報"
+          class="store-banner"
+        />
+      </a>
+    </section>
+    <!-- 共通フッター -->
+    <footer>
+      <p>© 2026 Tonny Fit All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // 画面に入ったらクラスを追加
+                entry.target.classList.add("is-visible");
+              } else {
+                // 画面から出たらクラスを削除（これで次また入った時にフワッとします！）
+                entry.target.classList.remove("is-visible");
+              }
+            });
+          },
+          {
+            threshold: 0.1, // 10%見えたら反応
+          },
+        );
+
+        document.querySelectorAll(".scroll-fade-in").forEach((section) => {
+          observer.observe(section);
+        });
+      });
+    </script>
+  </body>
+</html>

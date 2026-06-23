@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>レーベル一覧 | TonnyFit</title>
+    <!-- 💡 これで上で作った共通CSSを読み込みます！ -->
+    <link rel="stylesheet" href="../css/item.css" />
+
+    <style>
+      /* ==========================================
+         レーベルページ専用のグリッドデザイン
+         ========================================== */
+      .label-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+      }
+      .page-title {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 30px;
+        letter-spacing: 2px;
+      }
+
+      /* BEAMS風の4列グリッド */
+      .label-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* スマホ2列 */
+        gap: 30px 20px;
+      }
+      @media (min-width: 768px) {
+        .label-grid {
+          grid-template-columns: repeat(4, 1fr); /* PC4列 */
+        }
+      }
+
+      .label-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .label-image-box {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        background-color: rgba(255, 233, 220, 0.05);
+        border: 1px solid rgba(255, 233, 220, 0.1);
+        overflow: hidden;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+      .label-image-box img {
+        width: 100%; /* 枠の横幅いっぱいに広げる */
+        height: 100%; /* 枠の縦幅いっぱいに広げる */
+        object-fit: cover; /* 枠に合わせて画像を綺麗にトリミングして敷き詰める */
+        transition: transform 0.3s ease;
+      }
+      .label-name {
+        font-size: 14px;
+        font-weight: bold;
+        color: rgb(255, 233, 220);
+        margin-bottom: 4px;
+        transition: color 0.2s ease;
+      }
+      .label-description {
+        font-size: 11px;
+        color: rgba(255, 233, 220, 0.6);
+        line-height: 1.4;
+        max-width: 90%;
+      }
+
+      /* ✨ ホバー時の連動エフェクト */
+      .label-card:hover .label-image-box {
+        border-color: rgb(255, 123, 0);
+        box-shadow: 0 0 10px rgba(0, 146, 172, 0.2);
+      }
+      .label-card:hover .label-image-box img {
+        transform: scale(1.05);
+      }
+      .label-card:hover .label-name {
+        color: rgb(0, 146, 172);
+      }
+      /* --- フワッと表示用の共通スタイル --- */
+      .scroll-fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.8s ease-out,
+          transform 0.8s ease-out;
+        will-change: opacity, transform;
+      }
+      .scroll-fade-in.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* ヘッダー全体を画面幅に収める */
+      header {
+        width: 100%;
+        /* overflow: hidden; はみ出しをカット */
+      }
+
+      .header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; /* ロゴとメニューを左右端に配置 */
+        align-items: center;
+        padding: 10px; /* 余白を少し減らす */
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .header-container .logo img {
+        max-width: 80px; /* ロゴを少し小さくして余裕を作る */
+        height: auto;
+        display: block;
+      }
+      /* ナビゲーションを右寄せで横並びに */
+      .nav-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end; /* ナビを右寄せに固定 */
+        gap: 5px; /* 隙間を狭く */
+        flex-shrink: 1; /* 画面が狭いときは縮む */
+        min-width: 0; /* これが重要！flexアイテムがはみ出さないようにする */
+      }
+
+      .nav-links a {
+        /* 最小6pxまで小さくなるように設定 */
+        font-size: clamp(6px, 2.2vw, 12px);
+        white-space: nowrap;
+        color: rgb(255, 233, 220);
+        text-decoration: none;
+        padding: 0 2px;
+        line-height: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ヘッダー（共通CSSから自動適用） -->
+    <header>
+      <div class="header-container">
+        <a href="online.html" class="logo">
+          <img
+            class="logo"
+            src="../images/31833963-60DB-429D-B823-72A00010497C.png"
+            alt="TonnyFitホーム"
+          />
+        </a>
+        <nav class="nav-links">
+          <a href="online.html">オンライントップ</a>
+          <a href="category.html">アイテム</a>
+          <a href="styling.html">スタイリング</a>
+          <a href="label.html" style="color: rgb(0, 182, 214) !important"
+            >レーベル</a
+          >
+          <a href="../index.html">公式サイト</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <div class="label-container">
+      <h2 class="page-title scroll-fade-in">レーベル</h2>
+
+      <!-- 性別タブ（共通CSSから自動適用） -->
+      <div class="tab-container scroll-fade-in">
+        <span class="tab-item active">ALL</span>
+        <span class="tab-item">MEN</span>
+        <span class="tab-item">WOMEN</span>
+        <span class="tab-item">KIDS</span>
+      </div>
+
+      <!-- BEAMS風グリッド -->
+      <div class="label-grid">
+        <!-- レーベル5 -->
+        <a href="#" class="label-card scroll-fade-in">
+          <div class="label-image-box">
+            <img src="../images/levis.jpg" alt="Levi's" />
+          </div>
+          <p class="label-name">Levi's</p>
+          <p class="label-description">
+            1873年にジーンズを生み出した原点であり頂点。時代を超えて愛されるタイムレスな名作が揃う。
+          </p>
+        </a>
+
+        <!-- レーベル9 -->
+        <a href="#" class="label-card scroll-fade-in">
+          <div class="label-image-box">
+            <img src="../images/Wrangler.jpg" alt="Wrangler" />
+          </div>
+          <p class="label-name">Wrangler</p>
+          <p class="label-description">
+            カウボーイのワークウェアをルーツに持ち、機能美と美しいシルエットを追求し続けるウエスタンデニムの名門。
+          </p>
+        </a>
+
+        <!-- レーベル10 -->
+        <a href="#" class="label-card scroll-fade-in">
+          <div class="label-image-box">
+            <img src="../images/Lee.jpg" alt="Lee" />
+          </div>
+          <p class="label-name">Lee</p>
+          <p class="label-description">
+            100年以上の歴史を誇り、頑丈なワークウェアの機能性とモダンなデザインを融合させた伝統のブランド。
+          </p>
+        </a>
+
+        <!-- レーベル11 -->
+        <a href="#" class="label-card scroll-fade-in">
+          <div class="label-image-box">
+            <!-- Calvin Kleinのimgタグの例 -->
+            <img
+              src="../images/Calvin Klein.jpg"
+              alt="Calvin Klein"
+              style="object-fit: cover; object-position: 18%"
+            />
+          </div>
+          <p class="label-name">Calvin Klein</p>
+          <p class="label-description">
+            無駄を削ぎ落としたミニマリズムの極み。クリーンで洗練された、都会的なアメリカン・コンテンポラリー。
+          </p>
+        </a>
+
+        <!-- レーベル12 -->
+        <a href="#" class="label-card scroll-fade-in">
+          <div class="label-image-box">
+            <img src="../images/EDWIN.webp" alt="EDWIN" />
+          </div>
+          <p class="label-name">EDWIN</p>
+          <p class="label-description">
+            日本発。卓越した職人技と革新的なウオッシュ加工が生み出す、圧倒的な穿き心地のクオリティ・デニム。
+          </p>
+        </a>
+
+        <!-- レーベル4 -->
+        <a href="#" class="label-card scroll-fade-in">
+          <div class="label-image-box">
+            <img src="../images/diesel.jpg" alt="Diesel" />
+          </div>
+          <p class="label-name">DIESEL</p>
+          <p class="label-description">
+            革新的な加工技術とエッジの効いたデザインで世界を牽引する、プレミアム・デニムの代名詞。
+          </p>
+        </a>
+        <!-- レーベル1 -->
+        <a href="#" class="label-card scroll-fade-in">
+          <div class="label-image-box">
+            <img src="../images/cloe.jpg" alt="Cloe" />
+          </div>
+          <p class="label-name">Chloe</p>
+          <p class="label-description">
+            洗練されたフレンチフェミニンが宿る、美しいシルエットと上品な仕立ての大人のためのデニム。
+          </p>
+        </a>
+        <!-- レーベル2 -->
+        <a href="#" class="label-card scroll-fade-in">
+          <div class="label-image-box">
+            <img src="../images/alexanderwang.jpg" alt="alexanderwang" />
+          </div>
+          <p class="label-name">alexanderwang</p>
+          <p class="label-description">
+            NYのストリート感とエッジィな都会の洗練を落とし込んだ、タフでセクシーなリアルクローズ。。
+          </p>
+        </a>
+        <!-- レーベル3 -->
+        <a href="#" class="label-card scroll-fade-in">
+          <div class="label-image-box">
+            <img src="../images/adererror.jpg" alt="adererror" />
+          </div>
+          <p class="label-name">ADERERROR</p>
+          <p class="label-description">
+            独特なオーバーサイズと実験的な再構築デザインで個性を放つ、ソウル発の最先端ストリート。
+          </p>
+        </a>
+
+        <!-- レーベル6 -->
+        <a href="#" class="label-card scroll-fade-in">
+          <div class="label-image-box">
+            <img src="../images/loewe.jpg" alt="loewe" />
+          </div>
+          <p class="label-name">LOEWE</p>
+          <p class="label-description">
+            極上のクラフトマンシップと遊び心が融合した、大人のためのモダンで贅沢なハイエンド・デニム。
+          </p>
+        </a>
+
+        <!-- レーベル7 -->
+        <a href="#" class="label-card scroll-fade-in">
+          <div class="label-image-box">
+            <img src="../images/miumiu.jpg" alt="miumiu" />
+          </div>
+          <p class="label-name">MIUMIU</p>
+          <p class="label-description">
+            ヴィンテージへのオマージュとガーリーな感性が織りなす、自由でアイコニックなフレンチシック。
+          </p>
+        </a>
+        <!-- レーベル8 -->
+        <a href="#" class="label-card scroll-fade-in">
+          <div class="label-image-box">
+            <img src="../images/satur.jpg" alt="satur" />
+          </div>
+          <p class="label-name">SATUR</p>
+          <p class="label-description">
+            ソウル発。「土曜日の心地よさ」を提案する、クリーンでリラックス感漂う新世代のミニマルウェア。
+          </p>
+        </a>
+      </div>
+    </div>
+
+    <!-- フッター（共通CSSから自動適用） -->
+    <footer>
+      <p>© TonnyFit Co., Ltd. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      // 1. スクロール監視の処理
+      document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+              } else {
+                entry.target.classList.remove("is-visible");
+              }
+            });
+          },
+          { threshold: 0.1 },
+        );
+
+        document.querySelectorAll(".scroll-fade-in").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+
+      // 2. タブ切り替え処理
+      document.querySelectorAll(".tab-item").forEach((item) => {
+        item.addEventListener("click", function () {
+          document.querySelectorAll(".tab-item").forEach((tab) => {
+            tab.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+      });
+    </script>
+  </body>
+</html>

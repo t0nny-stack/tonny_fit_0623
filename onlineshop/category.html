@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>アイテムを探す | TonnyFit</title>
+    <!-- 💡 共通のCSSファイルを読み込み（これで土台やドット付きメニューも一発適用！） -->
+    <link rel="stylesheet" href="../css/item.css" />
+
+    <style>
+      /* ==========================================
+         アイテムページ専用のスタイル定義（グリッドと配置のみ）
+         ========================================== */
+      /* メインレイアウト（共通2カラム構造） */
+      /* CSSの .container を以下に書き換える */
+      /* メインレイアウトの修正 */
+      /* container の中央寄せ設定を解除し、左詰めに戻す */
+      .container {
+        max-width: 1200px; /* 少し広げて余裕を持たせる */
+        margin: 0 auto; /* 左右中央に配置 */
+        display: flex;
+        padding: 40px 20px;
+        gap: 40px; /* gapを80pxから40pxに縮小 */
+        justify-content: flex-start; /* 左寄せに戻す */
+      }
+
+      aside {
+        width: 180px; /* サイドメニュー幅を少し縮める */
+        flex-shrink: 0;
+      }
+
+      main {
+        flex-grow: 1;
+        max-width: 800px; /* コンテンツ幅を制限して左寄りに見せる */
+      }
+
+      .page-title {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 30px;
+        letter-spacing: 2px;
+      }
+
+      /* サイドバー（アイテムを探す用ナビ） */
+
+      .filter-section h3 {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        border-bottom: 1px solid rgba(255, 233, 220, 0.3);
+        padding-bottom: 5px;
+      }
+      .filter-list {
+        list-style: none;
+      }
+      .filter-list li {
+        margin-bottom: 12px;
+      }
+      .filter-list a {
+        font-size: 14px;
+        color: rgba(255, 233, 220, 0.8);
+      }
+      .filter-list a:hover {
+        color: rgb(0, 146, 172);
+      }
+
+      /* スマホ表示の時のレイアウト微調整 */
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+          gap: 20px;
+        }
+        aside {
+          width: 100%;
+          margin-bottom: 20px;
+        }
+      }
+      /* --- フワッと表示用の共通スタイル --- */
+      .scroll-fade-in {
+        opacity: 0;
+        transform: translateY(15px);
+        transition:
+          opacity 0.8s ease-out,
+          transform 0.8s ease-out;
+      }
+
+      .scroll-fade-in.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* ページロード時にクラスが付与されていない要素を強制的に表示させない */
+      .scroll-fade-in {
+        opacity: 0;
+        transform: translateY(15px);
+        transition:
+          opacity 0.8s ease-out,
+          transform 0.8s ease-out;
+      }
+      /* コンテナを中央に寄せつつ、少しゆとりを持たせる */
+      .label-container {
+        max-width: 1000px; /* 少しタイトにすると中央感が強調されます */
+        margin: 0 auto;
+        padding: 60px 20px;
+      }
+
+      /* ページタイトルとタブも中央揃えに */
+      .page-title {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .tab-container {
+        display: flex;
+        justify-content: center; /* これでMENとWOMENが綺麗に中央に来ます */
+        gap: 20px;
+        margin-bottom: 50px;
+      }
+      /* ヘッダー全体を画面幅に収める */
+      header {
+        width: 100%;
+        /* overflow: hidden; はみ出しをカット */
+      }
+
+      .header-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between; /* ロゴとメニューを左右端に配置 */
+        align-items: center;
+        padding: 10px; /* 余白を少し減らす */
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .header-container .logo img {
+        max-width: 80px; /* ロゴを少し小さくして余裕を作る */
+        height: auto;
+        display: block;
+      }
+      /* ナビゲーションを右寄せで横並びに */
+      .nav-links {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end; /* ナビを右寄せに固定 */
+        gap: 5px; /* 隙間を狭く */
+        flex-shrink: 1; /* 画面が狭いときは縮む */
+        min-width: 0; /* これが重要！flexアイテムがはみ出さないようにする */
+      }
+
+      .nav-links a {
+        /* 最小6pxまで小さくなるように設定 */
+        font-size: clamp(6px, 2.2vw, 12px);
+        white-space: nowrap;
+        color: rgb(255, 233, 220);
+        text-decoration: none;
+        padding: 0 2px;
+        line-height: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ヘッダー（共通CSSから自動適用） -->
+    <header>
+      <div class="header-container">
+        <a href="online.html" class="logo">
+          <img
+            class="logo"
+            src="../images/31833963-60DB-429D-B823-72A00010497C.png"
+            alt="TonnyFitホーム"
+          />
+        </a>
+        <nav class="nav-links">
+          <a href="online.html">オンライントップ</a>
+          <a href="category.html" style="color: rgb(0, 182, 214) !important"
+            >アイテム</a
+          >
+          <a href="styling.html">スタイリング</a>
+          <a href="label.html">レーベル</a>
+          <a href="../index.html">公式サイト</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- メインレイアウト -->
+    <div class="container">
+      <!-- 左：サイドバー -->
+      <aside>
+        <div class="filter-section">
+          <h3>アイテムを探す</h3>
+          <ul class="filter-list">
+            <li>
+              <a href="#" style="font-weight: bold; color: rgb(0, 146, 172)"
+                >カテゴリから探す</a
+              >
+            </li>
+            <li><a href="#">年代から探す</a></li>
+            <li><a href="#">色から探す</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- 右：メインコンテンツ -->
+      <main>
+        <h2 class="page-title">アイテムを探す</h2>
+
+        <!-- 性別選択（共通CSSから自動適用） -->
+        <div class="tab-container">
+          <span class="tab-item active">ALL</span>
+          <span class="tab-item">MEN</span>
+          <span class="tab-item">WOMEN</span>
+          <span class="tab-item">KIDS</span>
+        </div>
+
+        <!-- 全てを見るリンク（共通CSSから自動適用） -->
+        <div>
+          <a href="index.html" class="all-items-link">すべてのアイテムを見る</a>
+        </div>
+
+        <!-- カテゴリブロック：シャツ -->
+        <div class="category-group scroll-fade-in">
+          <h3>シャツ・ブラウス</h3>
+          <div class="sub-category-grid">
+            <a href="index.html">カジュアルシャツ</a>
+            <a href="#">ドレスシャツ</a>
+            <a href="#">ブラウス・プルオーバー</a>
+            <a href="#">ポロシャツ</a>
+            <a href="#">その他シャツ</a>
+          </div>
+        </div>
+
+        <!-- カテゴリブロック：Tシャツ -->
+        <div class="category-group scroll-fade-in">
+          <h3>Tシャツ・カットソー</h3>
+          <div class="sub-category-grid">
+            <a href="#">Tシャツ</a>
+            <a href="#">プリントTシャツ</a>
+            <a href="#">カットソー</a>
+            <a href="#">タンクトップ</a>
+            <a href="#">その他Tシャツ・カットソー</a>
+          </div>
+        </div>
+
+        <!-- カテゴリブロック：パンツ -->
+        <div class="category-group scroll-fade-in">
+          <h3>パンツ</h3>
+          <div class="sub-category-grid">
+            <a href="#">カジュアルパンツ</a>
+            <a href="#">チノパンツ</a>
+            <a href="#">デニムパンツ</a>
+            <a href="#">ミリタリーパンツ</a>
+            <a href="#">ショートパンツ</a>
+            <a href="#">スラックス</a>
+          </div>
+        </div>
+
+        <!-- カテゴリブロック：アウター -->
+        <div class="category-group scroll-fade-in">
+          <h3>ジャケット・ブルゾン</h3>
+          <div class="sub-category-grid">
+            <a href="#">テーラードジャケット</a>
+            <a href="#">ブルゾン</a>
+            <a href="#">ダウンジャケット</a>
+            <a href="#">ミリタリージャケット</a>
+            <a href="#">コート</a>
+          </div>
+        </div>
+
+        <!-- カテゴリブロック：追加分 -->
+        <div class="category-group scroll-fade-in">
+          <h3>アクセサリー</h3>
+          <div class="sub-category-grid">
+            <a href="#">ネックレス</a>
+            <a href="#">リング</a>
+            <a href="#">ブレスレット</a>
+            <a href="#">ピアス・イヤリング</a>
+            <a href="#">時計</a>
+          </div>
+        </div>
+
+        <div class="category-group scroll-fade-in">
+          <h3>バッグ・小物</h3>
+          <div class="sub-category-grid">
+            <a href="#">トートバッグ</a>
+            <a href="#">リュック</a>
+            <a href="#">ショルダーバッグ</a>
+            <a href="#">財布・革小物</a>
+            <a href="#">サングラス</a>
+          </div>
+        </div>
+
+        <div class="category-group scroll-fade-in">
+          <h3>シューズ</h3>
+          <div class="sub-category-grid">
+            <a href="#">スニーカー</a>
+            <a href="#">ブーツ</a>
+            <a href="#">サンダル</a>
+            <a href="#">ドレスシューズ</a>
+          </div>
+        </div>
+
+        <div class="category-group scroll-fade-in">
+          <h3>ホーム・雑貨</h3>
+          <div class="sub-category-grid">
+            <a href="#">クッション</a>
+            <a href="#">タオル</a>
+            <a href="#">ステーショナリー</a>
+            <a href="#">その他雑貨</a>
+          </div>
+        </div>
+
+        <!-- さらにカテゴリを追加 -->
+        <div class="category-group scroll-fade-in">
+          <h3>ライフスタイル</h3>
+          <div class="sub-category-grid">
+            <a href="#">インテリア雑貨</a>
+            <a href="#">フレグランス</a>
+            <a href="#">アウトドア用品</a>
+            <a href="#">トラベルグッズ</a>
+          </div>
+        </div>
+
+        <div class="category-group scroll-fade-in">
+          <h3>限定コレクション</h3>
+          <div class="sub-category-grid">
+            <a href="#">コラボレーション</a>
+            <a href="#">ヴィンテージ復刻</a>
+            <a href="#">シーズン限定品</a>
+          </div>
+        </div>
+
+        <div class="category-group scroll-fade-in">
+          <h3>ギフト・ケア用品</h3>
+          <div class="sub-category-grid">
+            <a href="#">ギフトラッピング</a>
+            <a href="#">洗剤・メンテナンス</a>
+            <a href="#">ケアツール</a>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- フッター（共通CSSから自動適用） -->
+    <footer>
+      <p>© TonnyFit Co., Ltd. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      // 共通のスクロール監視処理
+      document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+              } else {
+                entry.target.classList.remove("is-visible");
+              }
+            });
+          },
+          { threshold: 0.5 },
+        );
+
+        // scroll-fade-in クラスがついた要素すべてを監視対象にする
+        document.querySelectorAll(".scroll-fade-in").forEach((el) => {
+          observer.observe(el);
+        });
+      });
+
+      // タブの切り替え処理（既存のコード）
+      document.querySelectorAll(".tab-item").forEach((item) => {
+        item.addEventListener("click", function () {
+          document.querySelectorAll(".tab-item").forEach((tab) => {
+            tab.classList.remove("active");
+          });
+          this.classList.add("active");
+        });
+      });
+
+      // ページを開いた時、画面内にある要素を強制的に表示させる
+      document.addEventListener("DOMContentLoaded", () => {
+        const allElements = document.querySelectorAll(".scroll-fade-in");
+        allElements.forEach((el) => {
+          // 画面内にすでにある要素はすぐ表示
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight) {
+            el.classList.add("is-visible");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,268 @@
+/* ==========================================
+   1. 全体のリセットと基本設定
+   ========================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family:
+    "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    Meiryo, sans-serif;
+  color: rgb(255, 233, 220); /* 共通文字色：クリーム色 */
+  background-color: rgb(36, 7, 0); /* 共通背景色：深い赤茶 */
+  line-height: 1.6;
+}
+a {
+  color: rgb(255, 233, 220);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+/* ==========================================
+   2. 共通ヘッダー（透け感×すりガラスボカシ）
+   ========================================== */
+header {
+  border-bottom: 1px solid rgb(0, 146, 172);
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  background-color: rgba(255, 233, 220, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+  height: 75px;
+  display: flex !important;
+  align-items: center;
+}
+.header-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+}
+a.logo {
+  display: flex !important;
+  align-items: center;
+  height: 120px;
+  min-width: 150px;
+}
+img.logo {
+  height: 100% !important;
+  max-height: 120px !important;
+  width: auto !important;
+  display: block !important;
+  object-fit: contain;
+  margin-top: 10px;
+}
+.nav-links {
+  display: flex !important;
+  gap: 32px;
+  height: 75px;
+  align-items: center;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgb(73, 15, 0) !important; /* ヘッダー内は赤茶文字 */
+  letter-spacing: 0.8px;
+  position: relative;
+}
+.nav-links a:hover {
+  color: rgb(0, 146, 172) !important; /* ホバーで水色 */
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: rgb(0, 146, 172);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+.nav-links a:hover::after {
+  transform: scaleX(1); /* 線が伸びる */
+}
+
+/* ==========================================
+   3. 共通・性別タブ（ここが復活ポイント！）
+   ========================================== */
+.tab-container {
+  display: flex !important; /* 横並びを絶対に維持 */
+  width: 100%;
+  background-color: rgba(255, 233, 220, 0.1);
+  margin-bottom: 30px;
+}
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  color: rgba(255, 233, 220, 0.6) !important;
+  background-color: transparent;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+  display: block !important;
+}
+.tab-item.active {
+  background-color: rgb(0, 146, 172) !important; /* TonnyFit水色 */
+  color: #ffffff !important;
+}
+.tab-item:not(.active):hover {
+  background-color: rgba(255, 233, 220, 0.2) !important;
+  color: rgb(255, 233, 220) !important;
+}
+
+/* ==========================================
+   4. BEAMS風・ドット付き箇条書きメニュー（category用）
+   ========================================== */
+.all-items-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: rgb(255, 233, 220);
+  padding-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 233, 220, 0.2);
+  margin-bottom: 35px;
+}
+.all-items-link::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgb(255, 233, 220);
+  box-sizing: border-box;
+  background:
+    linear-gradient(
+      to right,
+      transparent 40%,
+      rgb(255, 233, 220) 40%,
+      rgb(255, 233, 220) 60%,
+      transparent 60%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 40%,
+      rgb(255, 233, 220) 40%,
+      rgb(255, 233, 220) 60%,
+      transparent 60%
+    );
+}
+.all-items-link:hover {
+  color: rgb(0, 146, 172);
+}
+.category-group {
+  margin-bottom: 45px;
+  padding-bottom: 20px;
+}
+.category-group h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: 0.05em;
+  border-bottom: 1px dashed rgba(255, 233, 220, 0.2);
+  color: rgb(255, 233, 220);
+}
+.category-group h3::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid rgb(0, 146, 172);
+  box-sizing: border-box;
+}
+.sub-category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px 40px;
+}
+@media (min-width: 768px) {
+  .sub-category-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.sub-category-grid a {
+  font-size: 14px;
+  color: rgba(255, 233, 220, 0.8);
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sub-category-grid a::before {
+  content: "";
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background-color: rgba(255, 233, 220, 0.4);
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+.sub-category-grid a:hover {
+  color: rgb(0, 146, 172) !important;
+}
+.sub-category-grid a:hover::before {
+  background-color: rgb(0, 146, 172);
+}
+.sub-category-grid a.highlight {
+  font-weight: bold;
+  color: rgb(0, 146, 172);
+}
+.sub-category-grid a.highlight::before {
+  background-color: rgb(0, 146, 172);
+}
+
+/* ==========================================
+   5. 共通フッター
+   ========================================== */
+footer {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 233, 220, 0.2);
+  padding: 40px 20px;
+  margin-top: 60px;
+  font-size: 12px;
+  text-align: center;
+  color: rgba(255, 233, 220, 0.5);
+}
+
+/* スマホ対応 */
+@media (max-width: 768px) {
+  header {
+    height: 60px;
+  }
+  img.logo {
+    max-height: 100px !important;
+  }
+  .nav-links {
+    gap: 16px;
+    height: auto;
+  }
+  /* .nav-links a {
+    font-size: 13px;
+  } */
+  .nav-links a::after {
+    display: none;
+  }
+  .sub-category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
