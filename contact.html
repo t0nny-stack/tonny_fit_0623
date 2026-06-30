@@ -45,7 +45,7 @@
         align-items: center;
       }
 
-      /* ロゴの左端寄せ */
+      
       header .logo {
         margin-left: 20px;
       }
@@ -55,9 +55,9 @@
         position: absolute;
         top: 15px;
         right: 20px;
-        background-color: transparent; /* 背景を透明に */
-        border: 1px solid rgb(255, 246, 237); /*枠線 */
-        color: rgb(36, 36, 36); /* 👈 文字色も全体のテーマカラーに合わせる */
+        background-color: transparent; 
+        border: 1px solid rgb(255, 246, 237);
+        color: rgb(36, 36, 36);
         padding: 0.5rem 1rem;
         z-index: 2000;
         cursor: pointer;
@@ -73,56 +73,56 @@
       /* ボタンのホバー設定 */
       .btn-menu:hover {
         background-color: #a76f4e;
-        color: rgb(255, 244, 237) !important;
+        color: rgb(255, 244, 237) ;
         border-color: transparent;
       }
-      /* CONTACTページ専用：メニュー開閉時の文字色を黒っぽくする */
+      /*メニュー開閉時の文字色 */
       .nav-links.open-menu a {
         color: rgb(
           156,
           104,
           69
-        ) !important; /* ここを好きな色に変えてください */
+        ) !important;
       }
-      /* CONTACTページ専用：メニュー開閉時の文字色を黒っぽくする */
+      
       .nav-links.open-menu a:hover {
-        color: #0bd !important; /* ここを好きな色に変えてください */
+        color: #0bd !important; 
       }
       /* ===================================================
-               【CONTACTページ専用】縦長カバー画像の設定（ヘッダーと分離）
+               【CONTACTページ専用】縦長カバー画像
                =================================================== */
       .sub-cover {
-        height: 700px !important; /* Newsと同じ縦長サイズにキープ */
-        background-size: cover !important;
-        background-position: center !important;
-        margin-bottom: 10rem !important;
+        height: 700px ; 
+        background-size: cover ;
+        background-position: center ;
+        margin-bottom: 10rem ;
 
-        /* 文字を中央に配置するための設定 */
+        
         display: flex;
         align-items: center;
         justify-content: center;
       }
 
-      /* パソコン画面（800px以上）のときの微調整 */
+    
       @media (min-width: 800px) {
         .sub-cover {
-          height: 800px !important;
-          margin-bottom: 12rem !important;
+          height: 800px ;
+          margin-bottom: 12rem ;
         }
         .page-footer {
-          margin-top: 15rem !important;
+          margin-top: 15rem ;
         }
       }
 
-      /* フッターの上の余白設定 */
+    
       .page-footer {
         margin-top: 12rem !important;
       }
 
       /* ===================================================
-               元のQ&A（アコーディオン）などのオリジナルスタイル
+               Q&A（アコーディオン）
                =================================================== */
-      /* アコーディオン全体 */
+      /* 全体 */
       .faq {
         max-width: 800px;
         margin: 0 auto 5rem;
@@ -130,7 +130,7 @@
         font-size: 100%;
       }
 
-      /* 1つのQ&Aブロック */
+      /* 1つのQ&A */
       .accordion-item {
         border-bottom: 1px solid #ddd;
       }
@@ -161,20 +161,16 @@
         color: #0bd;
         transition: transform 0.3s;
       }
-
-      /* 開いたときに矢印を反転 */
       .accordion-question.is-open::after {
         transform: translateY(-50%) rotate(180deg);
       }
 
-      /* 回答（初期状態：非表示） */
+      /* 回答 */
       .accordion-answer {
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.4s ease;
       }
-
-      /* 回答（開いた状態） */
       .accordion-answer.is-open {
         max-height: 300px;
       }
@@ -208,36 +204,35 @@
       .faq h3 {
         font-size: 2rem;
       }
-      /* お問い合わせボタンのサイズ調整 */
+      /* お問い合わせボタン */
       .email .btn-primary {
-        width: auto !important; /* 固定幅を解除 */
-        min-width: 200px !important; /* 最小幅を確保（必要なら数字を調整） */
-        padding: 1rem 2rem !important; /* 内側の余白でボタンの大きさを調整 */
-        margin: 20px 0 !important; /* 上下の余白調整 */
+        width: auto ; 
+        min-width: 200px ; 
+        padding: 1rem 2rem ; 
+        margin: 20px 0 ; 
         border-radius: 10px;
       }
-      /* その他お問い合わせのh3専用サイズ */
+      /* その他お問い合わせ */
       .email h3 {
-        font-size: 2rem !important; /* お好みの数字に変更してください */
+        font-size: 2rem ; 
       }
-      /* ===================================================
-               【スマホ版専用】見出し文字が大きすぎるのを綺麗に縮める調整（Newsと統一）
-               =================================================== */
+
+      /* 【スマホ版専用】見出し*/
       @media (max-width: 799px) {
         .faq-title {
-          font-size: 2.2rem !important;
+          font-size: 2.2rem ;
           text-align: center;
-          margin-top: 4rem !important;
-          margin-bottom: 2rem !important;
+          margin-top: 4rem ;
+          margin-bottom: 2rem ;
         }
         .wrapper .heading-midium.font-english {
-          font-size: 2.2rem !important;
-          margin-top: 4rem !important;
-          margin-bottom: 1.5rem !important;
+          font-size: 2.2rem ;
+          margin-top: 4rem ;
+          margin-bottom: 1.5rem ;
         }
       }
 
-      /* パソコン画面用の元々の見出しサイズ設定 */
+      /* パソコン画面用の見出し */
       @media (min-width: 800px) {
         .faq-title {
           font-size: 3rem;
@@ -248,23 +243,23 @@
       }
 
       /* ===================================================
-               【アニメーション基本ルール】スクロールでフワッと動く設定
+               【アニメーション基本】
                =================================================== */
       .fade-in-up {
-        opacity: 0 !important;
-        transform: translateY(40px) !important;
+        opacity: 0 ;
+        transform: translateY(40px) ;
         transition:
           opacity 1.2s ease,
-          transform 1.2s ease !important;
+          transform 1.2s ease ;
       }
       .fade-in-up.is-active {
-        opacity: 1 !important;
-        transform: translateY(0) !important;
+        opacity: 1 ;
+        transform: translateY(0) ;
       }
 
       .store-banner-wrapper {
         width: 100%;
-        max-width: 1200px; /* オンライントップのレイアウト幅に合わせてください */
+        max-width: 1200px; 
         margin: 60px auto;
         padding: 0 20px;
         text-align: center;
@@ -273,7 +268,7 @@
       .store-banner {
         display: block;
         width: 100%;
-        height: 100%; /* スタイリングページと高さを統一 */
+        height: 100%; 
         object-fit: cover;
         object-position: top;
         border-radius: 12px;
@@ -285,16 +280,15 @@
         transform: scale(1.01);
       }
 
-      /* Instagramの投稿を中央寄せにする */
+      /* Instagram投稿*/
       .sns-grid {
         display: flex;
         flex-wrap: wrap;
-        justify-content: center; /* これで中央に寄ります */
-        gap: 20px; /* 投稿同士の間隔 */
+        justify-content: center; 
+        gap: 20px; 
       }
-      /* Informationの見出し用スタイル */
+      /* Informationの見出し */
       .heading-large {
-        /* 最小サイズ 1.5rem, 推奨サイズ 5vw, 最大サイズ 3rem とした場合 */
         font-size: clamp(1.5rem, 5vw, 3rem);
         text-align: center;
       }
@@ -302,7 +296,6 @@
   </head>
 
   <body>
-    <!-- 💡 ① ヘッダーをカバー画像の外に出して独立（めり込みを解消！） -->
     <header>
       <div class="logo">
         <img
@@ -322,13 +315,12 @@
       </nav>
     </header>
 
-    <!-- 💡 ② カバー画像は単体でフワッと動くように修正 -->
     <div class="sub-cover cover-contact fade-in-up">
       <h2 class="page-title font-english">Contact</h2>
     </div>
 
     <main class="wrapper">
-      <!-- 🗺️ ロケーションセクション -->
+      <!-- ロケーションセクション -->
       <section class="location fade-in-up">
         <div class="location-info">
           <h3 class="heading-midium font-english">Information</h3>
@@ -356,7 +348,7 @@
         </div>
       </section>
 
-      <!-- 店舗案内バナーエリア -->
+      <!-- 店舗案内バナー -->
       <section class="store-banner-wrapper fade-in-up">
         <a href="（店舗詳細ページのURL）">
           <img
@@ -367,7 +359,7 @@
         </a>
       </section>
 
-      <!-- ❓ FAQ（Q&A）セクション -->
+      <!-- FAQ（Q&A）セクション -->
       <section
         class="faq-section fade-in-up"
         style="max-width: 800px; margin: 0 auto"
@@ -439,7 +431,7 @@
         </div>
       </section>
 
-      <!-- ✉️ お問い合わせフォームセクション -->
+      <!-- お問い合わせフォーム -->
       <section class="email fade-in-up" style="margin-top: 5rem">
         <h3 class="heading-midium font-english">その他お問い合わせ</h3>
         <p>
@@ -452,7 +444,7 @@
         </div>
       </section>
 
-      <!-- 📸 Instagram投稿セクション -->
+      <!--Instagram投稿 -->
       <section class="sns fade-in-up">
         <h3 class="heading-midium font-english">Instagram</h3>
         <div class="sns-grid">
@@ -546,7 +538,7 @@
       </section>
     </main>
 
-    <!-- 🧱 フッターエリア -->
+    <!-- フッター -->
     <footer class="page-footer fade-in-up">
       <div class="info-container">
         <h3 class="heading-large font-english">Information</h3>
@@ -570,7 +562,7 @@
       </div>
     </footer>
 
-    <!-- ⚙️ JavaScript（メニュー開閉 ＋ スクロールでフワッと動く機能を統合） -->
+    <!-- JavaScript-->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         // 1. メニュー開閉
@@ -588,7 +580,7 @@
           });
         }
 
-        // 2. Q&Aアコーディオンの開閉処理（元の機能を維持）
+        // 2. Q&Aアコーディオンの開閉処理
         const questions = document.querySelectorAll(".accordion-question");
         questions.forEach((question) => {
           question.addEventListener("click", () => {
@@ -603,7 +595,7 @@
           });
         });
 
-        // 3. スクロールでフワッと（スクロールするたびに動く設定）
+        // 3. スクロール動作
         const fadeInUpTargets = document.querySelectorAll(".fade-in-up");
 
         if (fadeInUpTargets.length > 0) {
@@ -616,10 +608,8 @@
           const observerCallback = (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
-                // 画面に入ったらクラスを付ける
                 entry.target.classList.add("is-active");
               } else {
-                // 💡 ここを復活させる：画面から出たらクラスを外す
                 entry.target.classList.remove("is-active");
               }
             });

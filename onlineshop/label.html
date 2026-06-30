@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>レーベル一覧 | TonnyFit</title>
-    <!-- 💡 これで上で作った共通CSSを読み込みます！ -->
     <link rel="stylesheet" href="../css/item.css" />
 
     <style>
@@ -23,15 +22,15 @@
         letter-spacing: 2px;
       }
 
-      /* BEAMS風の4列グリッド */
+    
       .label-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* スマホ2列 */
+        grid-template-columns: repeat(2, 1fr); 
         gap: 30px 20px;
       }
       @media (min-width: 768px) {
         .label-grid {
-          grid-template-columns: repeat(4, 1fr); /* PC4列 */
+          grid-template-columns: repeat(4, 1fr); 
         }
       }
 
@@ -54,9 +53,9 @@
         transition: all 0.3s ease;
       }
       .label-image-box img {
-        width: 100%; /* 枠の横幅いっぱいに広げる */
-        height: 100%; /* 枠の縦幅いっぱいに広げる */
-        object-fit: cover; /* 枠に合わせて画像を綺麗にトリミングして敷き詰める */
+        width: 100%;
+        height: 100%; 
+        object-fit: cover; 
         transition: transform 0.3s ease;
       }
       .label-name {
@@ -73,7 +72,7 @@
         max-width: 90%;
       }
 
-      /* ✨ ホバー時の連動エフェクト */
+      /* ホバー時の連動エフェクト */
       .label-card:hover .label-image-box {
         border-color: rgb(255, 123, 0);
         box-shadow: 0 0 10px rgba(0, 146, 172, 0.2);
@@ -84,7 +83,7 @@
       .label-card:hover .label-name {
         color: rgb(0, 146, 172);
       }
-      /* --- フワッと表示用の共通スタイル --- */
+      
       .scroll-fade-in {
         opacity: 0;
         transform: translateY(20px);
@@ -97,39 +96,38 @@
         opacity: 1;
         transform: translateY(0);
       }
-      /* ヘッダー全体を画面幅に収める */
+      
       header {
         width: 100%;
-        /* overflow: hidden; はみ出しをカット */
+      
       }
 
       .header-container {
         display: flex;
         flex-direction: row;
-        justify-content: space-between; /* ロゴとメニューを左右端に配置 */
+        justify-content: space-between;
         align-items: center;
-        padding: 10px; /* 余白を少し減らす */
+        padding: 10px;
         width: 100%;
         box-sizing: border-box;
       }
 
       .header-container .logo img {
-        max-width: 80px; /* ロゴを少し小さくして余裕を作る */
+        max-width: 80px; 
         height: auto;
         display: block;
       }
-      /* ナビゲーションを右寄せで横並びに */
+    
       .nav-links {
         display: flex;
         flex-direction: row;
-        justify-content: flex-end; /* ナビを右寄せに固定 */
-        gap: 5px; /* 隙間を狭く */
-        flex-shrink: 1; /* 画面が狭いときは縮む */
-        min-width: 0; /* これが重要！flexアイテムがはみ出さないようにする */
+        justify-content: flex-end; 
+        gap: 5px; 
+        flex-shrink: 1; 
+        min-width: 0; 
       }
 
       .nav-links a {
-        /* 最小6pxまで小さくなるように設定 */
         font-size: clamp(6px, 2.2vw, 12px);
         white-space: nowrap;
         color: rgb(255, 233, 220);
@@ -140,7 +138,7 @@
     </style>
   </head>
   <body>
-    <!-- ヘッダー（共通CSSから自動適用） -->
+    <!-- ヘッダー -->
     <header>
       <div class="header-container">
         <a href="online.html" class="logo">
@@ -166,7 +164,7 @@
     <div class="label-container">
       <h2 class="page-title scroll-fade-in">レーベル</h2>
 
-      <!-- 性別タブ（共通CSSから自動適用） -->
+      <!-- 性別タブ -->
       <div class="tab-container scroll-fade-in">
         <span class="tab-item active">ALL</span>
         <span class="tab-item">MEN</span>
@@ -174,7 +172,7 @@
         <span class="tab-item">KIDS</span>
       </div>
 
-      <!-- BEAMS風グリッド -->
+      <!-- グリッド -->
       <div class="label-grid">
         <!-- レーベル5 -->
         <a href="#" class="label-card scroll-fade-in">
@@ -311,7 +309,7 @@
       </div>
     </div>
 
-    <!-- フッター（共通CSSから自動適用） -->
+    <!-- フッター -->
     <footer>
       <p>© TonnyFit Co., Ltd. All Rights Reserved.</p>
     </footer>

@@ -32,13 +32,13 @@
          ヘッダー（ロゴ・メニュー）の統一設定
          =================================================== */
       header {
-        position: fixed; /* ヘッダーを上に固定 */
+        position: fixed; 
         top: 0;
         left: 0;
         width: 100%;
         z-index: 2000;
         padding: 20px 0;
-        background: rgba(255, 242, 207, 0.5); /* 半透明の帯 */
+        background: rgba(255, 242, 207, 0.5); 
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -53,7 +53,7 @@
       .btn-menu {
         position: absolute;
         top: 15px;
-        right: 20px; /* 右端からの距離 */
+        right: 20px;
         border: 1px solid rgba(255, 255, 255, 0.5);
         color: rgb(255, 233, 220);
         padding: 0.5rem 1rem;
@@ -64,12 +64,10 @@
         font-weight: bold;
         font-size: 1rem;
         letter-spacing: 0.05em;
-        background: transparent; /* 初期は透明 */
-        transition: 0.3s; /* ホバー時の滑らかな変化 */
+        background: transparent; 
+        transition: 0.3s; 
         border-radius: 10px;
       }
-
-      /* ボタンのホバー設定 */
       .btn-menu:hover {
         background: #9b4600;
         color: rgb(255, 233, 220);
@@ -79,28 +77,25 @@
          【NEWSページ専用】縦長カバー画像の設定
          =================================================== */
       .sub-cover {
-        height: 700px !important;
-        background-size: cover !important;
-        background-position: center !important;
-        margin-bottom: 10rem !important;
+        height: 700px ;
+        background-size: cover ;
+        background-position: center ;
+        margin-bottom: 10rem ;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding-top: 80px; /* ヘッダー分を下にずらす */
+        padding-top: 80px; 
       }
-      /* Informationの見出し用スタイル */
+      /* Informationの見出し*/
       .heading-large {
-        /* 最小サイズ 1.5rem, 推奨サイズ 5vw, 最大サイズ 3rem とした場合 */
         font-size: clamp(1.5rem, 5vw, 3rem);
         text-align: center;
       }
-      /* スマホ（画面幅480px以下）の時の調整 */
       @media (max-width: 480px) {
-        /* ここに .post-title を追加する */
         main .post-title {
-          font-size: 20px !important; /* 文字を小さくする */
-          line-height: 1.4; /* 行間を少し開ける */
-          padding: 0 10px; /* 左右に少し余白を作る */
+          font-size: 20px !important;
+          line-height: 1.4; 
+          padding: 0 10px;
         }
 
         h1,
@@ -109,12 +104,38 @@
         }
       }
 
-      /* ...以下略（既存の @media や .fade-in-up の設定はそのまま残してください）... */
+
+       .store-banner-wrapper {
+        width: 100%;
+        max-width: 1200px; 
+        margin: 60px auto;
+        padding: 0 20px;
+        text-align: center;
+      }
+
+      .store-banner {
+        display: block;
+        width: 100%;
+        height: 100%; 
+        object-fit: cover;
+        object-position: top;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease;
+      }
+
+      .store-banner:hover {
+        transform: scale(1.01);
+      }
+      .page-footer{
+        margin-top:3rem;
+
+      }
+    
     </style>
   </head>
 
   <body>
-    <!-- 💡 ① ヘッダー（ロゴとメニュー）をカバー画像の外に完全に出して独立させました -->
     <header>
       <div class="logo">
         <img
@@ -134,13 +155,12 @@
       </nav>
     </header>
 
-    <!-- 💡 ② カバー画像は単体でフワッと動くように「News」の文字だけを包む形にしました -->
     <div class="sub-cover cover-news fade-in-up">
       <h2 class="page-title font-english">News</h2>
     </div>
 
     <main class="wrapper news-contents">
-      <!-- 記事エリア -->
+      <!-- 記事 -->
       <article class="post fade-in-up">
         <h2 class="post-title">期間限定でショップ販売実施予定</h2>
         <div class="post-info">
@@ -182,7 +202,7 @@
         </p>
       </article>
 
-      <!-- サイドバーエリア -->
+      <!-- サイドバー -->
       <aside class="sidebar fade-in-up">
         <h3 class="heading-midium font-english">Category</h3>
         <ul class="side-menu">
@@ -201,7 +221,7 @@
         </ul>
       </aside>
 
-      <!-- 広告エリア -->
+      <!-- 広告 -->
       <aside class="ad fade-in-up">
         <h4 class="ad-title font-english">Original</h4>
         <img
@@ -211,7 +231,18 @@
       </aside>
     </main>
 
-    <!-- フッターエリア -->
+    <!-- 店舗案内バナーエリア -->
+    <section class="store-banner-wrapper scroll-fade-in">
+      <a href="（店舗詳細ページのURL）">
+        <img
+          src="images/banner3.jpg"
+          alt="TonnyFit 表参道ヒルズ店 店舗情報"
+          class="store-banner"
+        />
+      </a>
+    </section>
+
+    <!-- フッター -->
     <footer class="page-footer fade-in-up">
       <div class="info-container">
         <h3 class="heading-large font-english">Information</h3>
@@ -253,7 +284,7 @@
           });
         }
 
-        // スクロールでフワッと（複数要素を監視）
+        // スクロール動作
         const fadeInUpTargets = document.querySelectorAll(".fade-in-up");
 
         if (fadeInUpTargets.length > 0) {

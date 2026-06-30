@@ -4,34 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>アイテムを探す | TonnyFit</title>
-    <!-- 💡 共通のCSSファイルを読み込み（これで土台やドット付きメニューも一発適用！） -->
     <link rel="stylesheet" href="../css/item.css" />
 
     <style>
       /* ==========================================
-         アイテムページ専用のスタイル定義（グリッドと配置のみ）
+         アイテムページ専用のスタイル定義
          ========================================== */
-      /* メインレイアウト（共通2カラム構造） */
-      /* CSSの .container を以下に書き換える */
-      /* メインレイアウトの修正 */
-      /* container の中央寄せ設定を解除し、左詰めに戻す */
       .container {
-        max-width: 1200px; /* 少し広げて余裕を持たせる */
-        margin: 0 auto; /* 左右中央に配置 */
+        max-width: 1200px; 
+        margin: 0 auto; 
         display: flex;
         padding: 40px 20px;
-        gap: 40px; /* gapを80pxから40pxに縮小 */
-        justify-content: flex-start; /* 左寄せに戻す */
+        gap: 40px; 
+        justify-content: flex-start; 
       }
 
       aside {
-        width: 180px; /* サイドメニュー幅を少し縮める */
+        width: 180px; 
         flex-shrink: 0;
       }
 
       main {
         flex-grow: 1;
-        max-width: 800px; /* コンテンツ幅を制限して左寄りに見せる */
+        max-width: 800px; 
       }
 
       .page-title {
@@ -41,7 +36,7 @@
         letter-spacing: 2px;
       }
 
-      /* サイドバー（アイテムを探す用ナビ） */
+      /* サイドバー */
 
       .filter-section h3 {
         font-size: 16px;
@@ -64,7 +59,7 @@
         color: rgb(0, 146, 172);
       }
 
-      /* スマホ表示の時のレイアウト微調整 */
+    
       @media (max-width: 768px) {
         .container {
           flex-direction: column;
@@ -75,7 +70,7 @@
           margin-bottom: 20px;
         }
       }
-      /* --- フワッと表示用の共通スタイル --- */
+      
       .scroll-fade-in {
         opacity: 0;
         transform: translateY(15px);
@@ -88,7 +83,6 @@
         opacity: 1;
         transform: translateY(0);
       }
-      /* ページロード時にクラスが付与されていない要素を強制的に表示させない */
       .scroll-fade-in {
         opacity: 0;
         transform: translateY(15px);
@@ -96,14 +90,14 @@
           opacity 0.8s ease-out,
           transform 0.8s ease-out;
       }
-      /* コンテナを中央に寄せつつ、少しゆとりを持たせる */
+  
       .label-container {
-        max-width: 1000px; /* 少しタイトにすると中央感が強調されます */
+        max-width: 1000px; 
         margin: 0 auto;
         padding: 60px 20px;
       }
 
-      /* ページタイトルとタブも中央揃えに */
+  
       .page-title {
         text-align: center;
         margin-bottom: 40px;
@@ -111,43 +105,42 @@
 
       .tab-container {
         display: flex;
-        justify-content: center; /* これでMENとWOMENが綺麗に中央に来ます */
+        justify-content: center; 
         gap: 20px;
         margin-bottom: 50px;
       }
-      /* ヘッダー全体を画面幅に収める */
+
       header {
         width: 100%;
-        /* overflow: hidden; はみ出しをカット */
       }
 
       .header-container {
         display: flex;
         flex-direction: row;
-        justify-content: space-between; /* ロゴとメニューを左右端に配置 */
+        justify-content: space-between;
         align-items: center;
-        padding: 10px; /* 余白を少し減らす */
+        padding: 10px; 
         width: 100%;
         box-sizing: border-box;
       }
 
       .header-container .logo img {
-        max-width: 80px; /* ロゴを少し小さくして余裕を作る */
+        max-width: 80px; 
         height: auto;
         display: block;
       }
-      /* ナビゲーションを右寄せで横並びに */
+  
       .nav-links {
         display: flex;
         flex-direction: row;
-        justify-content: flex-end; /* ナビを右寄せに固定 */
-        gap: 5px; /* 隙間を狭く */
-        flex-shrink: 1; /* 画面が狭いときは縮む */
-        min-width: 0; /* これが重要！flexアイテムがはみ出さないようにする */
+        justify-content: flex-end; 
+        gap: 5px; 
+        flex-shrink: 1; 
+        min-width: 0; 
       }
 
       .nav-links a {
-        /* 最小6pxまで小さくなるように設定 */
+
         font-size: clamp(6px, 2.2vw, 12px);
         white-space: nowrap;
         color: rgb(255, 233, 220);
@@ -158,7 +151,7 @@
     </style>
   </head>
   <body>
-    <!-- ヘッダー（共通CSSから自動適用） -->
+    <!-- ヘッダー -->
     <header>
       <div class="header-container">
         <a href="online.html" class="logo">
@@ -210,7 +203,7 @@
           <span class="tab-item">KIDS</span>
         </div>
 
-        <!-- 全てを見るリンク（共通CSSから自動適用） -->
+        <!-- 全てを見るリンク -->
         <div>
           <a href="index.html" class="all-items-link">すべてのアイテムを見る</a>
         </div>
@@ -307,7 +300,6 @@
           </div>
         </div>
 
-        <!-- さらにカテゴリを追加 -->
         <div class="category-group scroll-fade-in">
           <h3>ライフスタイル</h3>
           <div class="sub-category-grid">
@@ -338,7 +330,7 @@
       </main>
     </div>
 
-    <!-- フッター（共通CSSから自動適用） -->
+    <!-- フッター -->
     <footer>
       <p>© TonnyFit Co., Ltd. All Rights Reserved.</p>
     </footer>
@@ -359,13 +351,12 @@
           { threshold: 0.5 },
         );
 
-        // scroll-fade-in クラスがついた要素すべてを監視対象にする
+    
         document.querySelectorAll(".scroll-fade-in").forEach((el) => {
           observer.observe(el);
         });
       });
 
-      // タブの切り替え処理（既存のコード）
       document.querySelectorAll(".tab-item").forEach((item) => {
         item.addEventListener("click", function () {
           document.querySelectorAll(".tab-item").forEach((tab) => {
@@ -375,11 +366,9 @@
         });
       });
 
-      // ページを開いた時、画面内にある要素を強制的に表示させる
       document.addEventListener("DOMContentLoaded", () => {
         const allElements = document.querySelectorAll(".scroll-fade-in");
         allElements.forEach((el) => {
-          // 画面内にすでにある要素はすぐ表示
           const rect = el.getBoundingClientRect();
           if (rect.top < window.innerHeight) {
             el.classList.add("is-visible");

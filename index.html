@@ -42,14 +42,13 @@
 
     <style>
       /* MENUボタンの配置とデザイン */
-      /* MENUボタンの配置とデザイン */
       .btn-menu {
         position: absolute;
         top: 15px;
         right: 20px;
-        background-color: transparent; /* 背景を透明に */
-        border: 1px solid rgb(255, 246, 237); /*枠線 */
-        color: rgb(36, 36, 36); /* 👈 文字色も全体のテーマカラーに合わせる */
+        background-color: transparent; 
+        border: 1px solid rgb(255, 246, 237); 
+        color: rgb(36, 36, 36); 
         padding: 0.5rem 1rem;
         z-index: 1000;
         cursor: pointer;
@@ -60,12 +59,12 @@
         border-radius: 10px;
         transition:
           background-color 0.3s ease,
-          color 0.3s ease; /* ホバー時にじわっと変える */
+          color 0.3s ease; 
       }
 
       .btn-menu:hover {
-        background-color: #9b4600 !important;
-        color: rgb(255, 244, 237) !important;
+        background-color: #9b4600 ;
+        color: rgb(255, 244, 237) ;
         border-color: transparent;
       }
 
@@ -73,114 +72,104 @@
         color: rgb(36, 36, 36);
       }
       .banner-container {
-        margin: 5rem 3rem; /* セクションとの間にスペースを確保 */
-        width: 1000px; /* スマホで見やすい横幅 */
+        margin: 5rem 3rem; 
+        width: 1000px; 
         height: 200px;
-        max-width: 1000px; /* PCでの最大幅を制限 */
-        /* overflow: hidden; */
-        border-radius: 10px; /* 角を少し丸くして柔らかく */
+        max-width: 1000px; 
+        border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
       }
 
       .banner-image {
-        /* display: ; */
         width: 1500px;
         height: 200px;
         size: 1000px;
 
-        /* transition: opacity 0.3s ease; */
+        
       }
 
       .banner-image:hover {
         opacity: 0.6;
       }
-      /* バナーの初期状態（透明で少し下に配置） */
+      
       .banner-container {
         opacity: 0;
         transform: translateY(30px);
-        transition: all 0.8s ease-out; /* 0.8秒かけて滑らかに動く */
+        transition: all 0.8s ease-out;
       }
 
-      /* 表示された時のクラス（JavaScriptで付与） */
+      
       .banner-container.is-visible {
         opacity: 1;
         transform: translateY(0);
       }
 
-      /* 既存のスタイルを強制的に上書きして中央配置・横並びにする */
+      /* 中央配置・横並び*/
       .grid {
-        display: grid !important;
-        grid-template-columns: repeat(3, 1fr) !important; /* 3つ並びを強制 */
-        gap: 20px !important;
-        max-width: 1000px !important;
-        margin: 0 auto !important;
-        width: 100% !important;
+        display: grid ;
+        grid-template-columns: repeat(3, 1fr) ;
+        gap: 20px ;
+        max-width: 1000px ;
+        margin: 0 auto ;
+        width: 100% ;
       }
 
       .item {
-        width: 100% !important; /* 親（grid）の分割に従う */
-        text-align: center !important;
+        width: 100% ; 
+        text-align: center ;
       }
 
-      /* .banner-image {
-                    display: block;
-                    width: 1100px;
-                    height: auto;
-                    transition: opacity 0.3s ease;
-                  } */
+      
 
-      /* PCサイズ (768px以上) での調整 */
       @media (min-width: 768px) {
         .banner-container {
-          max-width: 1000px; /* PCでの最大幅をここで指定 */
+          max-width: 1000px; 
         }
       }
 
-      /* 768px以上の画面で適用 */
+    
       @media (min-width: 768px) {
-        /* 既存のスタイルより優先度を上げるために親のタグ(body等)を含める */
         body .grid {
-          display: grid !important;
-          grid-template-columns: repeat(3, 1fr) !important;
-          gap: 20px !important;
-          max-width: 1000px !important;
-          margin: 0 auto !important;
-          width: 100% !important;
+          display: grid ;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px ;
+          max-width: 1000px!important ;
+          margin: 0 auto;
+          width: 100% ;
         }
       }
       /* Informationの見出し用スタイル */
       .heading-large {
-        /* 最小サイズ 1.5rem, 推奨サイズ 5vw, 最大サイズ 3rem とした場合 */
         font-size: clamp(1.5rem, 5vw, 3rem);
         text-align: center;
       }
       body .item {
-        width: 100% !important;
-        text-align: center !important;
-        padding: 0 !important; /* 余計な隙間を詰める */
+        width: 100% ;
+        text-align: center ;
+        padding: 0 ; 
       }
       .cta-buttons {
-        display: flex; /* 横並びにする設定 */
-        justify-content: center; /* 中央寄せ */
-        gap: 100px; /* ここでボタン同士の間隔を調整します */
-        margin-top: 5rem; /* 上側との余白 */
+        display: flex; 
+        justify-content: center; 
+        gap: 100px; 
+        margin-top: 5rem; 
       }
 
-      /* 画面幅が狭いとき（スマホなど）は縦並びにする */
+       /* 縦並び */
       @media (max-width: 600px) {
         .cta-buttons {
-          flex-direction: column; /* 縦並びに変更 */
-          gap: 20px; /* 縦並びの時の間隔を少し狭める */
+          flex-direction: column; 
+          gap: 20px;
           align-items: center;
         }
       }
-      /* ボタンのサイズを揃える設定 */
+      /* ボタンのサイズ */
       .cta-buttons a {
-        display: inline-block; /* 横幅や高さを指定可能にする */
-        min-width: 150px; /* ここで最小の幅を指定（調整してください） */
-        padding: 15px 20px; /* 上下の余白を固定 */
-        text-align: center; /* テキストを中央寄せ */
-        box-sizing: border-box; /* パディングを含めたサイズ計算にする */
+        display: inline-block; 
+        min-width: 150px; 
+        padding: 15px 20px; 
+        text-align: center; 
+        box-sizing: border-box; 
       }
     </style>
   </head>
@@ -188,8 +177,6 @@
   <body>
     <header class="top-header">
       <div class="logo">
-        <!-- 実際のロゴ画像の代わりにテキストを配置 -->
-        <!-- <h1><a href="#">長谷川酒造株式会社</a></h1> -->
         <img
           class="logo"
           src="images/31833963-60DB-429D-B823-72A00010497C.png"
@@ -224,12 +211,7 @@
         <br />洋服はもちろん、アクセサリーや小物も取り扱っていますので、ぜひ一度ご覧になってください。
       </p>
     </section>
-    <!-- 
-    <video autoplay muted loop playsinline width="100%">
-      <source src="images/HP_CM1.mp4" type="video/mp4" />
-    </video> -->
-
-    <!-- 追加するこだわりセクションの例 -->
+   
     <section class="features wrapper fade-in-up">
       <h2 class="font-english">Our Core</h2>
       <div class="grid">
@@ -268,7 +250,7 @@
         </div>
       </div>
 
-      <!-- バナー配置エリア -->
+      <!-- バナー　-->
       <div class="banner-container">
         <a
           href="https://t0nny-stack.github.io/tonny_fit62/onlineshop/online.html"
@@ -288,7 +270,7 @@
       </div>
     </section>
 
-    <!-- 動画エリア -->
+    <!-- 動画 -->
     <div style="width: 80%; max-width: 800px; margin: 100px auto 100px auto">
       <video
         id="tonnyVideo"
@@ -302,7 +284,7 @@
         <source src="images/HP_CM1.mp4" type="video/mp4" />
       </video>
 
-      <!-- 音声オン/オフ切り替えボタン（アイコン風） -->
+      <!-- 音声オン/オフ　-->
       <div style="text-align: right; margin-top: 10px">
         <button
           id="soundToggleBtn"
@@ -314,7 +296,7 @@
             /* border: 1px solid rgb(255, 244, 237); */
             border-radius: 20px;
             font-weight: lighter;
-            font-size: 15px;
+            font-size: 20px;
             transition: all 0.3s;
           "
         >
@@ -331,11 +313,11 @@
         if (video.muted) {
           video.muted = false;
           btn.innerHTML = "🔊";
-          btn.style.backgroundColor = "#e0f7fa"; // オン時は色を変える
+          btn.style.backgroundColor = "#e0f7fa"; 
         } else {
           video.muted = true;
           btn.innerHTML = "🔇";
-          btn.style.backgroundColor = "#f4f4f4"; // オフ時は戻す
+          btn.style.backgroundColor = "#f4f4f4"; 
         }
       }
     </script>
@@ -345,32 +327,19 @@
         var btn = event.target;
 
         if (video.muted) {
-          video.muted = false; // 音を出す
+          video.muted = false; 
           btn.innerText = "🔇";
         } else {
-          video.muted = true; // 音を消す
+          video.muted = true; 
           btn.innerText = "🔊";
         }
       }
     </script>
 
-    <script>
-      function toggleSound() {
-        var video = document.getElementById("tonnyVideo");
-        var btn = event.target;
-
-        if (video.muted) {
-          video.muted = false; // 音を出す
-          btn.innerText = "mute";
-        } else {
-          video.muted = true; // 音を消す
-          btn.innerText = "unmute";
-        }
-      }
-    </script>
+   
 
     <footer class="page-footer fade-in-up">
-      <!-- 枠線を繋げるために、全体を囲む div を追加します -->
+      
       <div class="info-container">
         <h3 class="heading-large font-english">Information</h3>
 
@@ -435,7 +404,7 @@
       const btn = document.querySelector(".btn-menu");
       const nav = document.querySelector(".nav-links");
 
-      // ボタンが存在するかチェックしてからイベントを登録
+      // ボタンが存在するかチェックしてからイベント登録
       if (btn && nav) {
         btn.addEventListener("click", () => {
           nav.classList.toggle("open-menu");

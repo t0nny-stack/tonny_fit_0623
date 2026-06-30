@@ -4,39 +4,37 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>スタイリング | TonnyFit</title>
-    <!-- 💡 共通のCSSファイルを読み込み（土台・性別タブ・ドット付きメニューはここで一発適用） -->
+    
     <link rel="stylesheet" href="../css/item.css" />
 
     <style>
       /* ==========================================
-         スタイリングページ専用のスタイル定義（グリッドと配置のみ）
+         スタイリングページ専用のスタイル定義
          ========================================== */
-      /* 1. コンテナのパディングを調整してさらに左へ */
-      /* 1. コンテナの左余白を最小限に */
+      
       .styling-container {
         max-width: 1200px;
         margin: 0 auto;
-        /* 右は20px、左は0pxにして左端にぴったり寄せます */
         padding: 40px 20px 40px 0px;
       }
-      /* 2. レイアウト全体：サイドメニューとメインを柔軟に並べる */
+    
       .content-layout {
         display: flex;
-        gap: 3vw; /* 隙間も画面幅に合わせて変化 */
+        gap: 3vw; 
         justify-content: flex-start;
       }
 
-      /* 2. サイドメニュー自体の左余白を強制リセット */
+  
       .side-menu {
         width: 220px;
         flex-shrink: 0;
-        margin-left: 0 !important; /* 他の余白指定を無視して左端へ */
+        margin-left: 0 !important; 
         padding-left: 0 !important;
       }
 
-      /* 右側：メインコンテンツが残りのスペースを自動で埋める */
+  
       .main-content {
-        flex: 1; /* 柔軟に伸縮 */
+        flex: 1; 
       }
 
       .page-title,
@@ -45,19 +43,19 @@
         justify-content: flex-start;
       }
 
-      /* 2カラムレイアウトの箱 */
+      
       .content-layout {
         display: flex;
         gap: 40px;
       }
 
-      /* 左側：サイドメニュー（幅の固定のみ） */
+  
 
       .menu-group {
         margin-bottom: 30px;
       }
       .menu-group h3 {
-        /* font-size: 15px; を削除して以下に変更 */
+    
         font-size: clamp(15px, 1.1vw, 15px);
         font-weight: bold;
         margin-bottom: 12px;
@@ -66,12 +64,10 @@
         color: rgb(255, 233, 220);
       }
 
-      /* メニュー内のリンクの左余白もリセット */
+    
       .menu-list li a {
         padding-left: 0;
       }
-      /* 右側：スタイリンググリッド */
-      /* 3. メニューリストの左余白も完全にリセット */
       .menu-list {
         list-style: none;
         margin-left: 0;
@@ -96,10 +92,9 @@
         background-color: rgba(255, 233, 220, 0.05);
         display: flex;
         flex-direction: column;
-        /* 影と動きの両方をスムーズに設定 */
         transition: all 0.3s ease;
         border: 1px solid rgba(255, 233, 220, 0.1);
-        text-decoration: none; /* aタグの標準装飾を消す */
+        text-decoration: none; 
         cursor: pointer;
       }
       .styling-card:hover {
@@ -138,8 +133,7 @@
         font-weight: bold;
       }
 
-      /* スマホ表示の調整 */
-      /* スマホ表示の調整（ここだけ切り替え） */
+
       @media (max-width: 768px) {
         .styling-container {
           padding: 20px 15px;
@@ -151,23 +145,22 @@
           width: 100%;
         }
       }
-      /* フワッと表示用のスタイル */
+      
       .scroll-fade-in {
         opacity: 0;
         transform: translateY(20px);
         transition:
           opacity 0.8s ease-out,
           transform 0.8s ease-out;
-        /* 念のため追加：アニメーションさせる要素にはこれを入れると安定します */
         will-change: opacity, transform;
       }
 
-      /* 表示された時のクラス */
+    
       .scroll-fade-in.is-visible {
         opacity: 1;
         transform: translateY(0);
       }
-      /* 追加：特集セクションのスタイル */
+  
       .feature-section {
         margin: 60px 0;
       }
@@ -181,7 +174,7 @@
         height: 500px;
         background:
           linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
-          url("../images/78a9795290b6eb954cb4142fe2b58b2b.jpg"); /* ここに画像パスを入れてね */
+          url("../images/78a9795290b6eb954cb4142fe2b58b2b.jpg");
         background-size: cover;
         background-position: center;
         display: flex;
@@ -204,14 +197,14 @@
         color: #333;
       }
       .store-banner-wrapper {
-        width: 100%; /* 親要素(main-content)の幅いっぱいに */
-        margin: 60px 0 0 0; /* 上側に余白、左右は親に合わせるため0 */
+        width: 100%; 
+        margin: 60px 0 0 0; 
         text-align: center;
       }
 
       .store-banner {
         display: block;
-        width: 100%; /* これにより親要素の幅（スタイリンググリッドの横幅）に完璧に合わさります */
+        width: 100%; 
         height: 100%;
         object-fit: cover;
         object-position: top;
@@ -221,41 +214,40 @@
         transition: transform 0.3s ease;
       }
       .store-banner:hover {
-        transform: scale(1.01); /* 控えめなホバー効果 */
+        transform: scale(1.01); 
       }
-      /* ヘッダー全体を画面幅に収める */
+      
       header {
         width: 100%;
-        /* overflow: hidden; はみ出しをカット */
+    
       }
 
       .header-container {
         display: flex;
         flex-direction: row;
-        justify-content: space-between; /* ロゴとメニューを左右端に配置 */
+        justify-content: space-between; 
         align-items: center;
-        padding: 10px; /* 余白を少し減らす */
+        padding: 10px; 
         width: 100%;
         box-sizing: border-box;
       }
 
       .header-container .logo img {
-        max-width: 80px; /* ロゴを少し小さくして余裕を作る */
+        max-width: 80px; 
         height: auto;
         display: block;
       }
-      /* ナビゲーションを右寄せで横並びに */
+      /* ナビゲーション*/
       .nav-links {
         display: flex;
         flex-direction: row;
-        justify-content: flex-end; /* ナビを右寄せに固定 */
-        gap: 5px; /* 隙間を狭く */
-        flex-shrink: 1; /* 画面が狭いときは縮む */
-        min-width: 0; /* これが重要！flexアイテムがはみ出さないようにする */
+        justify-content: flex-end; 
+        gap: 5px; 
+        flex-shrink: 1; 
+        min-width: 0; 
       }
 
       .nav-links a {
-        /* 最小6pxまで小さくなるように設定 */
         font-size: clamp(6px, 2.2vw, 12px);
         white-space: nowrap;
         color: rgb(255, 233, 220);
@@ -266,7 +258,7 @@
     </style>
   </head>
   <body>
-    <!-- ヘッダー（共通CSSから自動適用） -->
+    <!-- ヘッダー -->
     <header>
       <div class="header-container">
         <a href="online.html" class="logo">
@@ -288,7 +280,7 @@
       </div>
     </header>
 
-    <!-- 追加：特集バナーセクション -->
+    <!-- 特集バナー -->
     <section class="feature-section scroll-fade-in">
       <h3 class="feature-title">今週のピックアップ</h3>
       <div class="feature-banner">
@@ -302,7 +294,7 @@
     <div class="styling-container">
       <h2 class="page-title scroll-fade-in">スタイリング</h2>
 
-      <!-- 性別タブ（共通復活版CSSが完璧にサポート！） -->
+      <!-- 性別タブ -->
       <div class="tab-container scroll-fade-in">
         <span class="tab-item active">ALL</span>
         <span class="tab-item">MEN</span>
@@ -310,13 +302,12 @@
         <span class="tab-item">KIDS</span>
       </div>
 
-      <!-- 左右2カラムのレイアウト開始 -->
+    
       <div class="content-layout">
-        <!-- 左側：BEAMS風 箇条書き選択サイドメニュー -->
+
         <aside class="side-menu scroll-fade-in">
           <div class="menu-group">
             <h3>トップス</h3>
-            <!-- 💡 共通のドット＆光るエフェクトを効かせるため、クラス名に「sub-category-grid」を借用しています -->
             <ul
               class="menu-list sub-category-grid"
               style="display: flex; flex-direction: column"
@@ -388,7 +379,7 @@
           </div>
         </aside>
 
-        <!-- 右側：スナップ写真一覧 -->
+        <!-- スナップ写真 -->
         <main class="main-content">
           <div class="styling-grid">
             <!-- カード1 -->
@@ -526,7 +517,7 @@
             </a>
           </div>
 
-          <!-- ↓「今週のピックアップ」を削除して、ここにバナーを配置 -->
+
           <div class="store-banner-wrapper scroll-fade-in">
             <a href="（店舗詳細ページのURL）">
               <img
@@ -540,7 +531,7 @@
       </div>
     </div>
 
-    <!-- フッター（共通CSSから自動適用） -->
+    <!-- フッター -->
     <footer>
       <p>© TonnyFit Co., Ltd. All Rights Reserved.</p>
     </footer>
@@ -553,7 +544,7 @@
               if (entry.isIntersecting) {
                 entry.target.classList.add("is-visible");
               } else {
-                // 画面から出たらクラスを外すことで、再度スクロールした時にアニメーションが再発動する
+              
                 entry.target.classList.remove("is-visible");
               }
             });

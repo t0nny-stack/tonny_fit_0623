@@ -8,10 +8,7 @@
     <link rel="stylesheet" href="../css/item.css" />
 
     <style>
-      /* ==========================================
-         トップページ専用のスタイル定義（グリッドと装飾のみ）
-         ========================================== */
-      /* 1. メインビジュアル（カルーセルエリア） */
+      /* 1. メインビジュアル */
       .hero-carousel {
         width: 100%;
         background-color: rgb(0, 106, 124);
@@ -158,7 +155,7 @@
         }
       }
 
-      /* アニメーション前の状態（ここが原因で透明になっています） */
+      /* アニメーション*/
       .scroll-fade-in {
         opacity: 0;
         transform: translateY(15px);
@@ -167,7 +164,6 @@
           transform 0.8s ease-out;
       }
 
-      /* ★重要：ここが必要です！「is-visible」がついたら透明度を1にする */
       .scroll-fade-in.is-visible {
         opacity: 1;
         transform: translateY(0);
@@ -181,7 +177,7 @@
 
       .store-banner-wrapper {
         width: 100%;
-        max-width: 1200px; /* オンライントップのレイアウト幅に合わせてください */
+        max-width: 1200px; 
         margin: 60px auto;
         padding: 0 20px;
         text-align: center;
@@ -190,7 +186,7 @@
       .store-banner {
         display: block;
         width: 100%;
-        height: 100%; /* スタイリングページと高さを統一 */
+        height: 100%; 
         object-fit: cover;
         object-position: top;
         border-radius: 12px;
@@ -214,46 +210,36 @@
         transform: translateY(0);
       }
 
-      /* .nav-links a {
-       
-        font-size: clamp(12px, 1.5vw, 16px);
-
-        
-        padding: 0 10px;
-        white-space: nowrap; 
-      } */
-
-      /* スマホ版でのカードレイアウト調整 */
+    
       .product-grid {
         display: grid;
-        grid-template-columns: repeat(2, 1fr); /* スマホは2列 */
+        grid-template-columns: repeat(2, 1fr); 
         gap: 15px;
       }
 
       @media (max-width: 480px) {
         .product-grid {
-          grid-template-columns: 1fr; /* 画面が小さい時は1列にする */
+          grid-template-columns: 1fr; 
         }
       }
       @media (max-width: 768px) {
         .hero-carousel {
-          padding: 40px 15px; /* スマホ用に余白を少し小さく */
+          padding: 40px 15px; 
         }
       }
       /* 動画のコンテナ */
       @media (max-width: 768px) {
         .video-container {
-          /* ※HTML側のdivにこのクラス名をつけてください */
-          width: 100% !important; /* スマホでは幅いっぱいに */
+          width: 100% !important; 
           margin: 40px auto !important;
         }
       }
       @media (max-width: 480px) {
         .styling-grid {
-          grid-template-columns: 1fr; /* スマホの縦持ちなら1列がおすすめ */
+          grid-template-columns: 1fr; 
         }
       }
-      /* ★最重要：画面幅を超えて横に伸びるのを防ぐ設定 */
+      
       html,
       body {
         overflow-x: hidden;
@@ -262,47 +248,44 @@
         padding: 0;
       }
 
-      /* 動画エリアのスマホ用調整 */
-      /* HTML側のdivに「video-container」クラスを追加してください */
+      /* 動画エリア*/
+    
       .video-container {
-        width: 90% !important; /* 80%だと小さすぎるので90%に */
+        width: 90% !important; 
         max-width: 800px;
-        margin: 40px auto !important; /* 100pxだと余白が大きすぎます */
+        margin: 40px auto !important; 
       }
 
-      /* ヘッダー全体を画面幅に収める */
       header {
         width: 100%;
-        /* overflow: hidden; はみ出しをカット */
       }
 
       .header-container {
         display: flex;
         flex-direction: row;
-        justify-content: space-between; /* ロゴとメニューを左右端に配置 */
+        justify-content: space-between;
         align-items: center;
-        padding: 10px; /* 余白を少し減らす */
+        padding: 10px; 
         width: 100%;
         box-sizing: border-box;
       }
 
       .header-container .logo img {
-        max-width: 80px; /* ロゴを少し小さくして余裕を作る */
+        max-width: 80px;
         height: auto;
         display: block;
       }
-      /* ナビゲーションを右寄せで横並びに */
+    
       .nav-links {
         display: flex;
         flex-direction: row;
-        justify-content: flex-end; /* ナビを右寄せに固定 */
-        gap: 5px; /* 隙間を狭く */
-        flex-shrink: 1; /* 画面が狭いときは縮む */
-        min-width: 0; /* これが重要！flexアイテムがはみ出さないようにする */
+        justify-content: flex-end; 
+        gap: 5px; 
+        flex-shrink: 1; 
+        min-width: 0;
       }
 
       .nav-links a {
-        /* 最小6pxまで小さくなるように設定 */
         font-size: clamp(6px, 2.2vw, 12px);
         white-space: nowrap;
         color: rgb(255, 233, 220);
@@ -312,9 +295,18 @@
       }
 
       .hero-title {
-        /* 20px ～ 32px の間で、画面幅に合わせて自動調整 */
+  
         font-size: clamp(20px, 8vw, 32px);
       }
+
+      /* 対象の音声ボタンのクラス名やセレクタをここに指定してください */
+.mute-button-class {
+    background: transparent !important;
+    border: none !important; /* もし枠線がある場合はこれも削除 */
+    box-shadow: none !important; /* もし影がある場合はこれも削除 */
+}
+
+
     </style>
   </head>
   <body>
@@ -368,7 +360,7 @@
       </div>
     </section>
 
-    <!-- 動画エリア -->
+    <!-- 動画 -->
     <div style="width: 80%; max-width: 800px; margin: 100px auto 100px auto">
       <video
         id="tonnyVideo"
@@ -382,25 +374,23 @@
         <source src="../images/tonnyfitstore_pr .MP4" type="video/mp4" />
       </video>
 
-      <!-- 音声オン/オフ切り替えボタン（アイコン風） -->
-      <div style="text-align: right; margin-top: 10px">
-        <button
-          id="soundToggleBtn"
-          onclick="toggleSound()"
-          style="
-            margin: 0px 5px;
-            cursor: pointer;
-            color: rgb(255, 244, 237);
-            /* border: 1px solid rgb(255, 244, 237); */
-            border-radius: 20px;
-            font-weight: lighter;
-            font-size: 15px;
-            transition: all 0.3s;
-          "
-        >
-          🔇
-        </button>
-      </div>
+      <!-- 音声オン/オフ -->
+<div style="text-align: right; margin-top: 10px">
+  <button
+    id="soundToggleBtn"
+    onclick="toggleSound()"
+    style="
+      margin: 0px 5px;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      transition: all 0.3s;
+    "
+  >
+    🔇
+  </button>
+</div>
     </div>
 
     <script>
@@ -411,11 +401,11 @@
         if (video.muted) {
           video.muted = false;
           btn.innerHTML = "🔊";
-          btn.style.backgroundColor = "#e0f7fa"; // オン時は色を変える
+          // btn.style.backgroundColor = "#e0f7fa"; 
         } else {
           video.muted = true;
           btn.innerHTML = "🔇";
-          btn.style.backgroundColor = "#f4f4f4"; // オフ時は戻す
+          // btn.style.backgroundColor = "#f4f4f4"; 
         }
       }
     </script>
@@ -425,26 +415,11 @@
         var btn = event.target;
 
         if (video.muted) {
-          video.muted = false; // 音を出す
+          video.muted = false; 
           btn.innerText = "🔇";
         } else {
-          video.muted = true; // 音を消す
+          video.muted = true; 
           btn.innerText = "🔊";
-        }
-      }
-    </script>
-
-    <script>
-      function toggleSound() {
-        var video = document.getElementById("tonnyVideo");
-        var btn = event.target;
-
-        if (video.muted) {
-          video.muted = false; // 音を出す
-          btn.innerText = "mute";
-        } else {
-          video.muted = true; // 音を消す
-          btn.innerText = "unmute";
         }
       }
     </script>
@@ -655,47 +630,7 @@
           </p>
         </div>
 
-        <!-- 6人目：Hyungjun -->
-        <!-- <div class="styling-card">
-          <div
-            class="styling-image"
-            style="
-              background-image: url(../images/O1CN01sb8oqZ1bcBH1I3oqU__692123485.webp);
-              background-size: cover;
-            "
-          ></div>
-          <p class="staff-info">
-            <strong>Hyungjun</strong><br /><span>オンラインショップ</span>
-          </p>
-        </div> -->
-
-        <!-- 7人目：Jessica -->
-        <!-- <div class="styling-card">
-          <div
-            class="styling-image"
-            style="
-              background-image: url(../images/Levis-2024-look-1-.webp);
-              background-size: cover;
-            "
-          ></div>
-          <p class="staff-info">
-            <strong>Jessica</strong><br /><span>オンラインショップ</span>
-          </p>
-        </div> -->
-
-        <!-- 8人目：Lyra -->
-        <!-- <div class="styling-card">
-          <div
-            class="styling-image"
-            style="
-              background-image: url(../images/O1CN014n5pMc1bcBGyEGPbO__692123485.webp);
-              background-size: cover;
-            "
-          ></div>
-          <p class="staff-info">
-            <strong>Lyra</strong><br /><span>オンラインショップ</span>
-          </p>
-        </div> -->
+        
       </div>
     </section>
 
